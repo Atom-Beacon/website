@@ -98,9 +98,9 @@ const placeholderNews: NewsItem[] = [
 async function fetchGoogleNewsRSS(): Promise<NewsItem[]> {
   const rssUrl = "https://news.google.com/rss/search?q=nuclear+energy&hl=en&gl=US&ceid=US:en";
 
-  // Approach 1: rss2json.com — free JSON API for RSS feeds, works from any origin
+  // Approach 1: rss2json.com — works without setup as long as we avoid premium params like `count`
   try {
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=20`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
     const res = await fetch(apiUrl, { signal: AbortSignal.timeout(10000) });
     if (res.ok) {
       const data = await res.json();
