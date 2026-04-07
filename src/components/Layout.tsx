@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Atom } from "lucide-react";
+import CookieConsent from "./CookieConsent";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -127,6 +128,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </footer>
+      <CookieConsent />
     </div>
   );
 };
