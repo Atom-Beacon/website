@@ -96,64 +96,83 @@ const placeholderNews: NewsItem[] = [
 ];
 
 async function fetchGoogleNewsRSS(): Promise<NewsItem[]> {
-  // Use a CORS proxy to fetch Google News RSS
-  const query = encodeURIComponent("nuclear energy");
-  const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=en&gl=US&ceid=US:en`;
-  
-  // Try multiple CORS proxies
-  const proxies = [
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
-    `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`,
-  ];
+  const rssUrl = "https://news.google.com/rss/search?q=nuclear+energy&hl=en&gl=US&ceid=US:en";
 
-  let xmlText = "";
-  for (const proxyUrl of proxies) {
-    try {
-      const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(8000) });
-      if (res.ok) {
-        xmlText = await res.text();
-        if (xmlText.includes("<item>")) break;
+  // Approach 1: rss2json.com — free JSON API for RSS feeds, works from any origin
+  try {
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}&count=20`;
+    const res = await fetch(apiUrl, { signal: AbortSignal.timeout(10000) });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.status === "ok" && data.items?.length) {
+        return (data.items as Array<{
+          title: string;
+          link: string;
+          pubDate: string;
+          author: string;
+          description: string;
+        }>).slice(0, 20).map((item, i) => {
+          const snippet = (item.description || "").replace(/<[^>]*>/g, "").slice(0, 200);
+          const date = item.pubDate
+            ? new Date(item.pubDate).toISOString().split("T")[0]
+            : new Date().toISOString().split("T")[0];
+          return {
+            id: `live-${i}`,
+            title: item.title || "",
+            source: item.author || "News",
+            url: item.link || "",
+            category: categorizeArticle(item.title || "", snippet),
+            date,
+            snippet: snippet || "Click to read the full article.",
+            isLive: true,
+          };
+        });
       }
-    } catch {
-      continue;
     }
+  } catch {
+    // fall through to next approach
   }
 
-  if (!xmlText || !xmlText.includes("<item>")) {
-    throw new Error("Could not fetch RSS feed");
-  }
-
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlText, "text/xml");
-  const items = doc.querySelectorAll("item");
-
-  const newsItems: NewsItem[] = [];
-  items.forEach((item, i) => {
-    if (i >= 20) return; // limit to 20
-    const title = item.querySelector("title")?.textContent ?? "";
-    const link = item.querySelector("link")?.textContent ?? "";
-    const pubDate = item.querySelector("pubDate")?.textContent ?? "";
-    const source = item.querySelector("source")?.textContent ?? "Google News";
-    const description = item.querySelector("description")?.textContent ?? "";
-    // Strip HTML tags from description
-    const snippet = description.replace(/<[^>]*>/g, "").slice(0, 200);
-
-    const date = pubDate ? new Date(pubDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0];
-    const category = categorizeArticle(title, snippet);
-
-    newsItems.push({
-      id: `live-${i}`,
-      title,
-      source,
-      url: link,
-      category,
-      date,
-      snippet: snippet || "Click to read the full article.",
-      isLive: true,
+  // Approach 2: allorigins XML proxy fallback
+  try {
+    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`, {
+      signal: AbortSignal.timeout(10000),
     });
-  });
+    if (res.ok) {
+      const xmlText = await res.text();
+      if (xmlText.includes("<item>")) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xmlText, "text/xml");
+        const items = doc.querySelectorAll("item");
+        const newsItems: NewsItem[] = [];
+        items.forEach((item, i) => {
+          if (i >= 20) return;
+          const title = item.querySelector("title")?.textContent ?? "";
+          const link = item.querySelector("link")?.textContent ?? "";
+          const pubDate = item.querySelector("pubDate")?.textContent ?? "";
+          const source = item.querySelector("source")?.textContent ?? "Google News";
+          const description = item.querySelector("description")?.textContent ?? "";
+          const snippet = description.replace(/<[^>]*>/g, "").slice(0, 200);
+          const date = pubDate ? new Date(pubDate).toISOString().split("T")[0] : new Date().toISOString().split("T")[0];
+          newsItems.push({
+            id: `live-${i}`,
+            title,
+            source,
+            url: link,
+            category: categorizeArticle(title, snippet),
+            date,
+            snippet: snippet || "Click to read the full article.",
+            isLive: true,
+          });
+        });
+        if (newsItems.length > 0) return newsItems;
+      }
+    }
+  } catch {
+    // fall through
+  }
 
-  return newsItems;
+  throw new Error("Could not fetch news from any source");
 }
 
 const News = () => {
