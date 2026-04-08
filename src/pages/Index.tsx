@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Atom, Newspaper, BookOpen, Pencil, Baby } from "lucide-react";
+import { Atom, Newspaper, BookOpen, Pencil, Baby, Building2 } from "lucide-react";
 import heroImage from "@/assets/hero-atomic.jpg";
 
 const features = [
@@ -18,18 +18,25 @@ const features = [
     delay: "stagger-2",
   },
   {
+    icon: Building2,
+    title: "Business",
+    description: "Explore the companies driving nuclear innovation — from startups to industry giants.",
+    to: "/business",
+    delay: "stagger-3",
+  },
+  {
     icon: Pencil,
     title: "Blog & Opinions",
     description: "Read editorials and commentary on the future of clean energy from our contributors.",
     to: "/blog",
-    delay: "stagger-3",
+    delay: "stagger-4",
   },
   {
     icon: Baby,
     title: "Kids Zone",
     description: "Fun, age-appropriate learning about atoms, energy, and how nuclear power works.",
     to: "/kids",
-    delay: "stagger-4",
+    delay: "stagger-5",
   },
 ];
 
@@ -52,7 +59,7 @@ const Index = () => {
               Powering Tomorrow with the Atom
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-xl">
-              Welcome to Atomic Pulse — your trusted source for nuclear energy news, education, and thoughtful commentary. We believe every energy source has its place, and nuclear deserves a seat at the table.
+              Welcome to Atom Beacon — your trusted source for nuclear energy news, education, and thoughtful commentary. We believe every energy source has its place, and nuclear deserves a seat at the table.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -76,13 +83,13 @@ const Index = () => {
       <section className="container py-20">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Explore Atomic Pulse
+            Explore Atom Beacon
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Whether you're a policy expert, a curious student, or just getting started — there's something here for everyone.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((f) => (
             <Link
               key={f.to}

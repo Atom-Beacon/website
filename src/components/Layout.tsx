@@ -7,6 +7,7 @@ const navLinks = [
   { to: "/", label: "Home" },
   { to: "/news", label: "News" },
   { to: "/learn", label: "Learn" },
+  { to: "/business", label: "Business" },
   { to: "/blog", label: "Blog" },
   { to: "/kids", label: "Kids Zone" },
 ];
@@ -23,7 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Link to="/" className="flex items-center gap-2 group">
             <Atom className="h-8 w-8 text-primary group-hover:animate-spin" />
             <span className="font-heading text-xl font-bold text-foreground tracking-tight">
-              Atomic <span className="text-primary">Pulse</span>
+              Atom <span className="text-primary">Beacon</span>
             </span>
           </Link>
 
@@ -85,7 +86,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Atom className="h-6 w-6 text-primary" />
-                <span className="font-heading text-lg font-bold text-foreground">Atomic Pulse</span>
+                <span className="font-heading text-lg font-bold text-foreground">Atom Beacon</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Promoting nuclear energy as part of a clean, diverse energy future. All energy sources have a role to play.
@@ -121,7 +122,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Atomic Pulse. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Atom Beacon. All rights reserved.</p>
             <p className="mt-1">
               Disclaimer: Opinions expressed in the blog section are those of individual authors and do not constitute professional energy policy advice.
             </p>
