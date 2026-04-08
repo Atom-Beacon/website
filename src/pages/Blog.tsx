@@ -55,8 +55,8 @@ We're on the cusp of a nuclear renaissance — and SMRs are leading the charge.`
     title: "Every Energy Source Has a Purpose",
     author: "Editorial Team",
     date: "March 20, 2026",
-    excerpt: "At Atomic Pulse, we champion nuclear — but we champion clean energy as a whole. Here's why the 'us vs. them' mentality in energy debates hurts everyone.",
-    content: `One thing you won't find on Atomic Pulse is negativity toward other forms of clean energy. That's by design — and by conviction.
+    excerpt: "At Atom Beacon, we champion nuclear — but we champion clean energy as a whole. Here's why the 'us vs. them' mentality in energy debates hurts everyone.",
+    content: `One thing you won't find on Atom Beacon is negativity toward other forms of clean energy. That's by design — and by conviction.
 
 Too often, energy discussions devolve into tribal debates. Nuclear advocates dismiss renewables as unreliable. Solar and wind supporters portray nuclear as dangerous and expensive. Fossil fuel interests play both sides against each other. Meanwhile, carbon emissions keep rising.
 
@@ -66,7 +66,7 @@ Solar and wind are abundant, increasingly affordable, and can be deployed quickl
 
 A clean energy portfolio is like a diversified investment portfolio — it's stronger because of its diversity, not in spite of it.
 
-At Atomic Pulse, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down other clean technologies. We're all on the same team.
+At Atom Beacon, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down other clean technologies. We're all on the same team.
 
 The only opponent is carbon. Let's act like it.`,
     tags: ["opinion", "clean energy", "philosophy"],
@@ -81,7 +81,7 @@ const Blog = () => {
       <div className="max-w-3xl mx-auto">
         <h1 className="font-heading text-4xl font-bold text-foreground mb-2">Blog & Opinions</h1>
         <p className="text-muted-foreground mb-12 text-lg">
-          Editorials, commentary, and thought pieces from the Atomic Pulse team and guest contributors.
+          Editorials, commentary, and thought pieces from the Atom Beacon team and guest contributors.
         </p>
 
         <div className="space-y-8">

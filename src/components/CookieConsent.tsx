@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Cookie, X } from "lucide-react";
 
-const COOKIE_CONSENT_KEY = "atomic-pulse-cookie-consent";
+const COOKIE_CONSENT_KEY = "atom-beacon-cookie-consent";
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
@@ -10,7 +10,6 @@ const CookieConsent = () => {
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (!consent) {
-      // Small delay so it doesn't flash on load
       const timer = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timer);
     }
