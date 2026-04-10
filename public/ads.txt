@@ -1,0 +1,4 @@
+# ads.txt — Authorized Digital Sellers
+# @todo: Replace PUB_ID with your actual Google AdSense publisher ID (ca-pub-XXXXXXXXXXXXXXXX)
+# Format: google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

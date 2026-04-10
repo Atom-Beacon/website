@@ -7,6 +7,7 @@
     <meta name="description" content="Your trusted source for nuclear energy news, education, and thoughtful commentary. Promoting clean nuclear energy as part of a diverse energy future." />
     <meta name="author" content="Atom Beacon" />
     <link rel="canonical" href="https://atombeacon.dev" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     <meta property="og:title" content="Atom Beacon — Nuclear Energy News & Education" />
     <meta property="og:description" content="Your trusted source for nuclear energy news, education, and thoughtful commentary." />
@@ -16,15 +17,58 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
+    <!-- Organization structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Atom Beacon",
+      "url": "https://atombeacon.dev",
+      "description": "Nuclear energy news, education, and commentary — promoting clean nuclear energy as part of a diverse energy future.",
+      "logo": "https://atombeacon.dev/placeholder.svg",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- WebSite structured data with search -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Atom Beacon",
+      "url": "https://atombeacon.dev",
       "description": "Nuclear energy news, education, and commentary",
-      "url": "https://atombeacon.dev"
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://atombeacon.dev/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
+
+    <!-- BreadcrumbList structured data (homepage) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://atombeacon.dev/" },
+        { "@type": "ListItem", "position": 2, "name": "News", "item": "https://atombeacon.dev/news" },
+        { "@type": "ListItem", "position": 3, "name": "Learn", "item": "https://atombeacon.dev/learn" },
+        { "@type": "ListItem", "position": 4, "name": "Business", "item": "https://atombeacon.dev/business" },
+        { "@type": "ListItem", "position": 5, "name": "Blog", "item": "https://atombeacon.dev/blog" },
+        { "@type": "ListItem", "position": 6, "name": "Kids Zone", "item": "https://atombeacon.dev/kids" }
+      ]
+    }
+    </script>
+
+    <!--
+      Google AdSense — Auto Ads
+      @todo: Replace ca-pub-XXXXXXXXXXXXXXXX with your real AdSense publisher ID
+      @todo: Auto ads will only render in production on a verified domain
+      @todo: After approval, enable Auto Ads in AdSense dashboard for this site
+    -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   </head>
 
   <body>

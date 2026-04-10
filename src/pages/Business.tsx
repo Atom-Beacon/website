@@ -178,22 +178,94 @@ const companies: Company[] = [
       { title: "Framatome expands North American fuel manufacturing capacity", url: "https://www.framatome.com/medias/news" },
     ],
   },
+  {
+    name: "Terrestrial Energy",
+    website: "https://www.terrestrialenergy.com",
+    hq: "Oakville, Ontario, Canada",
+    focus: "Integral Molten Salt Reactor (IMSR) design and development",
+    purePlay: true,
+    description: "Terrestrial Energy is developing the Integral Molten Salt Reactor (IMSR), a Generation IV nuclear plant that uses liquid molten salt as both fuel and coolant. Founded in 2013, the company went public via a reverse merger and is now publicly traded. The IMSR is designed to produce both electricity and high-temperature industrial heat (up to 585°C), making it suitable for applications like hydrogen production, desalination, and petrochemical processing — markets that traditional reactors cannot easily serve.",
+    exciting: "The IMSR's use of liquid fuel dissolved directly in molten salt is a fundamentally different approach — it operates at near-atmospheric pressure, eliminating the need for massive pressure vessels and dramatically simplifying safety systems. The reactor's compact design targets a construction timeline of just 4 years. Terrestrial Energy has completed a Phase 2 Vendor Design Review with the Canadian Nuclear Safety Commission (CNSC), positioning it among the most advanced Gen IV designs in regulatory engagement. The company raised over $136 million and achieved a market cap of approximately $660 million as of early 2026.",
+    challenges: "Molten salt reactor technology, while theoretically elegant, has limited operational history — the last MSR (ORNL's Molten-Salt Reactor Experiment) operated in the 1960s. Material corrosion from fluoride salts at high temperatures remains an engineering challenge. The company is pre-revenue and faces a long path to first commercial deployment. Competition from other SMR designs with more conventional (and better-understood) technology is intense.",
+    recentNews: [
+      { title: "Terrestrial Energy announces Q4 and full year 2025 results", url: "https://ir.terrestrialenergy.com/" },
+      { title: "Terrestrial Energy advances CNSC Vendor Design Review for IMSR", url: "https://www.terrestrialenergy.com/news/" },
+      { title: "Terrestrial Energy targets industrial heat market with molten salt technology", url: "https://www.terrestrialenergy.com/news/" },
+    ],
+  },
+  {
+    name: "Helion Energy",
+    website: "https://www.helionenergy.com",
+    hq: "Everett, Washington, USA",
+    focus: "Fusion energy — pulsed non-ignition field-reversed configuration",
+    purePlay: true,
+    description: "Helion Energy is a privately held fusion energy company developing a radically different approach to fusion power. Unlike tokamak designs (which aim to confine plasma in a magnetic donut), Helion uses a pulsed field-reversed configuration (FRC) — accelerating two plasma rings to over 1 million mph and colliding them to achieve fusion conditions. The company's approach is designed to directly convert fusion energy into electricity without a steam turbine, using electromagnetic induction. Helion has raised over $577 million, including a $425 million round from SoftBank's venture arm in January 2025 that valued the company at $5.4 billion.",
+    exciting: "In February 2026, Helion's Polaris prototype became the first privately funded fusion machine to demonstrate measurable deuterium-tritium (D-T) fusion, achieving plasma temperatures of 150 million degrees Celsius — an industry first. Helion has a power purchase agreement with Microsoft to deliver fusion electricity by 2028. Construction of their first commercial plant, Orion, is underway in Malaga, Washington, with all major permits secured. Helion's direct energy conversion approach could make fusion plants far simpler and cheaper than conventional steam-cycle designs.",
+    challenges: "Fusion remains one of the hardest engineering problems in history. While Helion has hit impressive milestones, sustained net energy gain (Q > 1) has not yet been publicly demonstrated. The 2028 Microsoft PPA timeline is extremely ambitious. Scaling from laboratory prototypes to a grid-connected power plant involves enormous engineering leaps. Regulatory frameworks for fusion are still being developed.",
+    recentNews: [
+      { title: "Helion's Polaris achieves first private D-T fusion at 150 million °C", url: "https://www.helionenergy.com/articles/helion-achieves-new-fusion-energy-milestones/" },
+      { title: "Helion secures land and begins building world's first fusion power plant", url: "https://www.helionenergy.com/articles/helion-secures-land-and-begins-building-site-of-worlds-first-fusion-power-plant/" },
+      { title: "Helion raises $425M from SoftBank at $5.4B valuation", url: "https://www.helionenergy.com/articles/" },
+    ],
+  },
+  {
+    name: "X-energy",
+    website: "https://x-energy.com",
+    hq: "Rockville, Maryland, USA",
+    focus: "High-Temperature Gas-Cooled Reactor (HTGR) and TRISO fuel manufacturing",
+    purePlay: true,
+    description: "X-energy is developing the Xe-100, an 80 MWe high-temperature gas-cooled reactor (HTGR) that uses helium as its coolant and TRISO (TRi-structural ISOtropic) fuel particles — tiny uranium kernels encased in multiple layers of ceramic and carbon that act as their own containment. The company is vertically integrated: through its TRISO-X subsidiary, it is building the first commercial TRISO fuel fabrication facility in the United States in Oak Ridge, Tennessee. Founded in 2009, X-energy has raised over $1.7 billion in total funding and filed a draft registration for an IPO in March 2026.",
+    exciting: "The Xe-100's TRISO fuel is often called 'the most robust nuclear fuel on Earth' — it can withstand temperatures over 1,600°C without releasing fission products, making a meltdown physically impossible. The reactor produces steam at 565°C, hot enough for industrial process heat applications. X-energy has partnerships with Dow Chemical (to power an industrial site), the U.S. Department of Defense, and Talen Energy for gigawatt-scale deployment evaluations. The TRISO-X fuel facility will serve not only X-energy's reactors but could supply fuel for other advanced reactor designs.",
+    challenges: "First-of-a-kind construction risk for both the reactor and fuel facility. HTGR technology, while proven in concept (German AVR/THTR, U.S. Fort St. Vrain), has a mixed operational history. Competing for utility contracts against more established LWR-based SMRs. The TRISO fuel supply chain is still being established at commercial scale.",
+    recentNews: [
+      { title: "X-energy submits draft IPO registration statement to the SEC", url: "https://www.x-energy.com/news/" },
+      { title: "X-energy and Talen Energy evaluate gigawatt-scale Xe-100 deployment", url: "https://www.x-energy.com/news/" },
+      { title: "X-energy and IHI Corporation partner on U.S.-Japan SMR supply chain", url: "https://www.x-energy.com/news/" },
+    ],
+  },
+  {
+    name: "Holtec International",
+    website: "https://www.holtec.com",
+    hq: "Camden, New Jersey, USA",
+    focus: "SMR design, spent fuel storage, and nuclear plant decommissioning",
+    purePlay: true,
+    description: "Holtec International is a diversified nuclear technology company that has become one of the most consequential — and controversial — players in the U.S. nuclear industry. Originally known for designing dry cask storage systems for spent nuclear fuel (the HI-STORM and HI-STAR systems used at reactor sites worldwide), Holtec has expanded aggressively into plant decommissioning and new reactor construction. The company acquired the shuttered Palisades nuclear plant in Michigan and the Oyster Creek site in New Jersey, and is developing the SMR-300 (an evolution of the earlier SMR-160), a 300 MWe light-water small modular reactor designed with passive safety systems.",
+    exciting: "Holtec's 'Mission 2030' program aims to build America's first SMR-300 units at the Palisades site in Michigan — a bold plan to transform a decommissioning site into a showcase for new nuclear. The company successfully restarted the Palisades plant with $1.5 billion in DOE loan support, making it the first U.S. nuclear plant to come back from retirement. The SMR-300's passive safety design requires no operator action or external power for emergency cooling, relying entirely on gravity and natural circulation.",
+    challenges: "Holtec has faced scrutiny over its business practices, including questions about decommissioning fund management and contract disputes. The company's ambitious promises — from rapid SMR deployment to plant restarts — have sometimes outpaced execution. NRC licensing of the SMR-300 is still in early stages. Holtec is privately held, making financial transparency more limited than public competitors.",
+    recentNews: [
+      { title: "Holtec launches 'Mission 2030' to deploy first SMR-300s at Palisades", url: "https://www.holtec.com/news" },
+      { title: "Palisades nuclear plant restart advances with DOE loan support", url: "https://www.holtec.com/news" },
+      { title: "Holtec advances SMR-300 design for NRC pre-application review", url: "https://www.holtec.com/news" },
+    ],
+  },
+  {
+    name: "Rolls-Royce SMR",
+    website: "https://www.rolls-royce-smr.com",
+    hq: "Derby, United Kingdom",
+    focus: "Factory-built small modular reactor for UK and international markets",
+    purePlay: true,
+    description: "Rolls-Royce SMR is a subsidiary of Rolls-Royce Holdings plc dedicated to developing a 470 MWe pressurized water reactor designed for factory manufacture and rapid on-site assembly. The concept leverages Rolls-Royce's decades of experience building nuclear reactors for the Royal Navy's submarine fleet. The SMR design uses proven PWR technology but packages it in a modular format where major components are manufactured in a centralized factory and shipped to site, targeting a 4-year construction timeline. The company has grown to over 860 employees and is backed by a consortium including the UK government, BNF Resources, Exelon, and Qatar Investment Authority.",
+    exciting: "The UK government has committed substantial funding to Rolls-Royce SMR as a cornerstone of its energy security strategy — Great British Nuclear selected the design for potential deployment at multiple UK sites. The factory-build approach could solve nuclear's biggest problem: construction cost and schedule overruns. By manufacturing components in controlled factory conditions and assembling on-site like large industrial equipment, Rolls-Royce aims to deliver nuclear plants at predictable cost. The company is also pursuing international markets including the Czech Republic, the Netherlands, and Turkey.",
+    challenges: "The design is still progressing through the UK's Generic Design Assessment (GDA) — a rigorous multi-year regulatory review. No Rolls-Royce SMR has been built yet, so cost and schedule projections remain theoretical. Competition from other SMR designs (GE Hitachi BWRX-300, NuScale VOYGR) is fierce. Building the factory manufacturing capability itself requires major upfront investment.",
+    recentNews: [
+      { title: "UK's Great British Nuclear selects Rolls-Royce SMR for deployment sites", url: "https://www.rolls-royce-smr.com/press" },
+      { title: "Rolls-Royce SMR progresses through UK Generic Design Assessment", url: "https://www.rolls-royce-smr.com/press" },
+      { title: "Rolls-Royce SMR pursues international partnerships in Europe and beyond", url: "https://www.rolls-royce-smr.com/press" },
+    ],
+  },
 ];
 
 /* @todo: Add the following companies with full profiles when research is complete:
-   - X-energy (TRISO-X fuel, Xe-100 HTGR, based in Rockville, MD)
-   - Holtec International (SMR-160, spent fuel storage, based in Camden, NJ)
-   - Terrestrial Energy (IMSR molten salt reactor, based in Ontario, Canada)
    - Korea Hydro & Nuclear Power (KHNP) — APR1400 reactor, South Korea's nuclear champion
    - Rosatom (Russian state nuclear corporation — VVER reactors, global nuclear exporter)
    - China National Nuclear Corporation (CNNC) — Hualong One reactor
    - EDF (Électricité de France) — world's largest nuclear fleet operator
-   - Rolls-Royce SMR — UK-backed SMR program
-   - Commonwealth Fusion Systems — fusion energy startup (MIT spinoff)
-   - Helion Energy — fusion energy company backed by Sam Altman
+   - Commonwealth Fusion Systems — fusion energy startup (MIT spinoff, SPARC tokamak)
+   - General Atomics — DIII-D tokamak, EM Systems, GA-ESI SMR concepts
    
    For each: verify HQ, current CEO, latest financials, and find 3 real recent news headlines with actual URLs.
    Consider adding a "Fusion Pioneers" subsection for fusion-focused companies.
+   Consider adding geographic filtering (Americas, Europe, Asia) and pure-play vs conglomerate toggle.
 */
 
 const Business = () => (
