@@ -61,16 +61,20 @@ const content: Record<AgeLevel, { title: string; sections: { heading: string; bo
         body: "A nuclear power plant has several key components: the reactor core (where fission happens), a coolant system (usually water) that carries heat away from the core, a steam generator, a turbine, and a generator. The reactor is housed in a thick containment structure made of reinforced concrete and steel, designed to contain radiation even in extreme scenarios. Modern plants have multiple independent safety systems.",
       },
       {
-        heading: "Nuclear vs. Other Energy Sources",
-        body: "Every energy source has trade-offs. Nuclear excels at providing large amounts of reliable, carbon-free electricity with a tiny land footprint. A nuclear plant the size of a shopping mall produces as much electricity as a solar farm covering 13,000 football fields. However, nuclear plants are expensive to build and produce radioactive waste that must be safely managed. Wind and solar are cheaper to build per unit but need large areas and backup power for when conditions aren't favorable.",
+        heading: "Energy Sources Work Together",
+        body: "Every energy source has its own strengths. Nuclear excels at providing large amounts of reliable, carbon-free electricity with a very small land footprint. Solar panels capture energy from the sun and can be installed on rooftops. Wind turbines harness moving air in open areas. Coal and natural gas plants can be built quickly and have powered civilization for over a century. The best energy grids use a mix of many sources, each doing what it does best. Nuclear's special strength is providing steady, round-the-clock power.",
       },
       {
-        heading: "Nuclear Waste: Not as Scary as You Think",
-        body: "All of the used nuclear fuel produced by US nuclear plants over 60+ years would fit on a single football field stacked just 10 yards high. Compare that to the millions of tons of CO₂ released by fossil fuel plants every year. Used fuel is stored in robust steel and concrete containers. Scientists are also developing ways to recycle used fuel, extracting 90%+ of the remaining energy.",
+        heading: "Nuclear Waste: Smaller Than You Think",
+        body: "All of the used nuclear fuel produced by US nuclear plants over 60+ years would fit on a single football field stacked just 10 yards high. That's incredibly compact compared to the waste from many other industries. Used fuel is stored in robust steel and concrete containers. Scientists are also developing ways to recycle used fuel, extracting 90%+ of the remaining energy.",
       },
       {
         heading: "The Future: Fusion Energy",
         body: "While current nuclear plants use fission (splitting atoms), scientists are working on fusion — combining light atoms like hydrogen to release even more energy. Fusion is what powers the Sun! If achieved commercially, fusion could provide virtually unlimited, clean energy with minimal waste. Major experiments around the world are making steady progress.",
+      },
+      {
+        heading: "How Did We Get Here? A Brief History of Energy",
+        body: "Humans have always needed energy. We started with wood fires, then discovered coal — which powered the steam engines that built the modern world. Oil and natural gas transformed transportation and industry. Hydroelectric dams, nuclear reactors, wind turbines, and solar panels each added new capabilities. Every step forward built on what came before. Understanding this history helps us appreciate why energy diversity matters.",
       },
     ],
   },
