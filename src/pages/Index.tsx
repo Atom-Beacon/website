@@ -111,11 +111,11 @@ const Index = () => {
           <h2 className="font-heading text-3xl font-bold text-foreground mb-6">
             Our Philosophy
           </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-            We're advocates for nuclear energy — but not at the expense of other clean energy sources. Solar, wind, hydro, geothermal, and nuclear all have vital roles in building a sustainable future. Our focus is on lifting up nuclear energy's incredible potential while respecting every technology that helps us move away from carbon.
+           <p className="text-muted-foreground text-lg leading-relaxed mb-4">
+            We're advocates for nuclear energy — but not at the expense of any other energy source. Coal, oil, and natural gas built the modern world and continue to serve vital roles in communities everywhere. Solar, wind, hydro, and geothermal each bring unique strengths. Our focus is on lifting up nuclear energy's incredible potential while respecting every form of power generation that keeps the lights on.
           </p>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            Clean energy isn't a competition. It's a collaboration.
+            Energy isn't a competition. It's a portfolio — and every source has its place.
           </p>
         </div>
       </section>

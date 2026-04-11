@@ -53,11 +53,11 @@ const Environment = () => (
             Nuclear has the <strong className="text-foreground">smallest land footprint</strong> of any major energy source. According to the U.S. Department of Energy, a typical 1,000-MW nuclear plant requires about <strong className="text-foreground">1 square mile</strong> of land. To produce the same amount of electricity:
           </p>
           <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mb-4">
-            <li>A wind farm would need approximately <strong className="text-foreground">360 square miles</strong></li>
-            <li>A solar farm would need approximately <strong className="text-foreground">75 square miles</strong></li>
+            <li>A wind farm would need approximately <strong className="text-foreground">360 square miles</strong> (though wind farms allow dual use of the land for agriculture)</li>
+            <li>A solar farm would need approximately <strong className="text-foreground">75 square miles</strong> (with agrivoltaics emerging as a way to combine solar and farming)</li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
-            This compact footprint means less habitat disruption, less deforestation, and less agricultural land displaced — a critical consideration as the world balances energy needs with biodiversity preservation.
+            Every energy source uses land differently, and each approach has trade-offs. Nuclear's compact footprint is one of its strengths, but wind and solar offer their own land-use advantages. The key is matching the right energy source to the right context.
           </p>
         </section>
 

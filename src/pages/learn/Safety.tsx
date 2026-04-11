@@ -19,10 +19,13 @@ const Safety = () => (
         <section className="retro-card">
           <h2 className="font-heading text-2xl font-semibold text-foreground mb-4">The Safety Record</h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            Nuclear energy is statistically one of the <strong className="text-foreground">safest forms of energy production</strong> in the world. According to peer-reviewed research published in <em>The Lancet</em> and analysis by Our World in Data, nuclear energy has caused fewer deaths per unit of energy produced than any other major source — including wind and solar — when accounting for the full lifecycle (manufacturing, installation, operation, and accidents).
+            Nuclear energy is statistically one of the <strong className="text-foreground">safest forms of energy production</strong> in the world. According to peer-reviewed research published in <em>The Lancet</em> and analysis by Our World in Data, nuclear energy has caused fewer deaths per unit of energy produced than any other major source when accounting for the full lifecycle (manufacturing, installation, operation, and accidents).
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            The death rate from nuclear energy is approximately <strong className="text-foreground">0.03 deaths per terawatt-hour (TWh)</strong> of electricity produced. For comparison: coal is at about 24.6 deaths/TWh, oil about 18.4, natural gas about 2.8, wind about 0.04, and solar about 0.05.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            The death rate from nuclear energy is approximately <strong className="text-foreground">0.03 deaths per terawatt-hour (TWh)</strong> of electricity produced. For comparison, coal causes about 24.6 deaths/TWh, oil about 18.4, natural gas about 2.8, and even wind and solar are at 0.04 and 0.05 respectively.
+            It's worth noting that every energy source has improved its safety record over time. The fossil fuel industry has made tremendous strides in worker safety and emissions controls, and renewables continue to improve manufacturing and installation safety. The data above reflects the reality that all energy production carries some risk — and nuclear's record is remarkably strong.
           </p>
         </section>
 

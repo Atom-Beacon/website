@@ -20,13 +20,13 @@ const posts: BlogPost[] = [
     excerpt: "Public perception of nuclear energy is shifting — and for good reason. Let's explore why now is the time to reconsider the atom.",
     content: `For decades, nuclear energy has been misunderstood. Hollywood dramatizations, Cold War anxieties, and a handful of well-publicized accidents created a narrative that overshadowed nuclear's remarkable safety record and environmental benefits.
 
-But times are changing. With climate urgency at an all-time high, energy policymakers, environmentalists, and even former nuclear skeptics are taking a fresh look at what atomic energy can offer.
+But times are changing. With growing interest in energy diversity and reliability, policymakers, environmentalists, and even former nuclear skeptics are taking a fresh look at what atomic energy can offer.
 
-The numbers speak for themselves: nuclear power provides about 10% of the world's electricity and roughly 25% of all low-carbon electricity globally. In countries like France, which gets about 70% of its electricity from nuclear, carbon emissions from the power sector are a fraction of those in countries relying heavily on fossil fuels.
+The numbers speak for themselves: nuclear power provides about 10% of the world's electricity and roughly 25% of all low-carbon electricity globally. In countries like France, which gets about 70% of its electricity from nuclear, the power sector benefits from stable, reliable generation around the clock.
 
 Modern reactor designs are safer, more efficient, and more versatile than ever before. Small Modular Reactors (SMRs) promise to make nuclear accessible to communities and regions that could never justify a traditional large plant. Advanced fuel cycles are tackling the waste challenge. And fusion — the holy grail of energy — is making real progress.
 
-This isn't about choosing nuclear over renewables. It's about recognizing that we need every tool in the toolbox. Nuclear provides the reliable, always-on power that complements intermittent sources like wind and solar. Together, they can deliver a truly clean grid.
+This isn't about choosing nuclear over any other source. Every form of energy — from coal and natural gas to solar and wind — has played a critical role in building the world we live in. Nuclear adds something unique to the mix: dense, reliable, carbon-free power that runs day and night. It's a complement to every other source, not a replacement.
 
 The atom isn't the future. It's part of it. And it's time we gave it a fair hearing.`,
     tags: ["opinion", "clean energy", "policy"],
@@ -55,21 +55,21 @@ We're on the cusp of a nuclear renaissance — and SMRs are leading the charge.`
     title: "Every Energy Source Has a Purpose",
     author: "Editorial Team",
     date: "March 20, 2026",
-    excerpt: "At Atom Beacon, we champion nuclear — but we champion clean energy as a whole. Here's why the 'us vs. them' mentality in energy debates hurts everyone.",
-    content: `One thing you won't find on Atom Beacon is negativity toward other forms of clean energy. That's by design — and by conviction.
+    excerpt: "At Atom Beacon, we champion nuclear — but we respect every form of energy that keeps the world running. Here's our philosophy.",
+    content: `One thing you won't find on Atom Beacon is negativity toward any form of energy. That's by design — and by conviction.
 
-Too often, energy discussions devolve into tribal debates. Nuclear advocates dismiss renewables as unreliable. Solar and wind supporters portray nuclear as dangerous and expensive. Fossil fuel interests play both sides against each other. Meanwhile, carbon emissions keep rising.
+Too often, energy discussions devolve into tribal debates. Nuclear advocates dismiss renewables. Renewable supporters dismiss nuclear. And both sometimes forget that fossil fuels — coal, oil, and natural gas — built the modern world and continue to power billions of lives today.
 
-The truth is simpler than the debate suggests: we need all of these technologies. Each has strengths that complement the others' limitations.
+The truth is simpler than the debate suggests: we benefit from all of these technologies. Each has strengths that complement the others.
 
-Solar and wind are abundant, increasingly affordable, and can be deployed quickly. But they're intermittent — the sun doesn't always shine, and the wind doesn't always blow. Nuclear provides reliable, always-on baseload power that fills those gaps. Hydropower offers both baseload and flexible peaking power. Geothermal taps Earth's constant heat in favorable locations. Battery storage is bridging short-term gaps.
+Solar and wind are abundant, increasingly affordable, and can be deployed quickly. They're variable by nature — output changes with weather and time of day — but paired with storage and other baseload sources, they're tremendously valuable. Nuclear provides reliable, always-on power that pairs well with every other source. Hydropower offers both baseload and flexible generation. Geothermal taps Earth's constant heat. And fossil fuels provide energy density, portability, and reliability that billions of people depend on every day — they brought us to where we are, and they continue to serve a purpose as the energy landscape evolves.
 
-A clean energy portfolio is like a diversified investment portfolio — it's stronger because of its diversity, not in spite of it.
+A balanced energy portfolio is like a diversified investment portfolio — it's stronger because of its diversity, not in spite of it.
 
-At Atom Beacon, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down other clean technologies. We're all on the same team.
+At Atom Beacon, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down any other energy source. Every form of power generation has contributed to human progress.
 
-The only opponent is carbon. Let's act like it.`,
-    tags: ["opinion", "clean energy", "philosophy"],
+The goal is a future where every community has access to reliable, affordable energy. That means valuing every tool in the toolbox.`,
+    tags: ["opinion", "energy diversity", "philosophy"],
   },
 ];
 

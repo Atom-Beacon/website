@@ -57,7 +57,7 @@ const WhatIsNuclearEnergy = () => (
             <li><strong className="text-foreground">17,000 cubic feet of natural gas</strong></li>
           </ul>
           <p className="text-muted-foreground leading-relaxed">
-            This extraordinary energy density means nuclear plants require far less fuel than fossil fuel plants and produce far less waste per unit of energy generated. It also means nuclear fuel is relatively inexpensive to transport and store.
+            This extraordinary energy density means nuclear plants require far less fuel than fossil fuel plants and produce far less waste per unit of energy generated. It also means nuclear fuel is relatively inexpensive to transport and store. For perspective, fossil fuels like coal and natural gas also offer excellent energy density for their applications — it's part of why they powered the industrial revolution and remain essential today. Nuclear simply takes energy density to another level.
           </p>
         </section>
 

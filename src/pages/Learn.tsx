@@ -76,7 +76,7 @@ const Learn = () => {
         <div className="mt-12 retro-card bg-primary/5">
           <h3 className="font-heading text-xl font-semibold text-foreground mb-3">A Note on Energy Diversity</h3>
           <p className="text-muted-foreground leading-relaxed">
-            While we're passionate about nuclear energy, we recognize that no single source can solve the world's energy challenges alone. Solar, wind, hydro, geothermal, and other renewables each bring unique strengths. The most resilient, clean energy grids will use a diverse mix — and nuclear provides the reliable, carbon-free baseload power that makes intermittent sources like wind and solar more effective. Together, they're unstoppable.
+            While we're passionate about nuclear energy, we recognize that no single source can solve the world's energy challenges alone. Fossil fuels — coal, oil, and natural gas — powered the industrial revolution and continue to play important roles around the globe. Solar, wind, hydro, and geothermal each bring unique strengths. The most resilient energy grids use a diverse mix, and nuclear provides reliable, carbon-free baseload power that complements every other source. Together, all forms of energy make civilization possible.
           </p>
         </div>
       </div>
