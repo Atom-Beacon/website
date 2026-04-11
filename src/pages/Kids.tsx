@@ -99,7 +99,11 @@ const content: Record<AgeLevel, { title: string; sections: { heading: string; bo
       },
       {
         heading: "Energy Economics and Policy",
-        body: "Nuclear's levelized cost of electricity (LCOE) varies significantly by region and project management. While nuclear has high capital costs and long construction timelines, it offers very low and stable fuel costs (uranium price has minimal impact on electricity cost) and plants can operate for 60-80 years. When accounting for system costs — including grid integration, backup capacity, and storage for intermittent sources — nuclear becomes highly competitive. Carbon pricing mechanisms further improve nuclear's economic position.",
+        body: "Nuclear's levelized cost of electricity (LCOE) varies significantly by region and project management. While nuclear has high capital costs and long construction timelines, it offers very low and stable fuel costs (uranium price has minimal impact on electricity cost) and plants can operate for 60-80 years. Every energy source has a different cost profile — natural gas plants are cheap to build but fuel-dependent, solar and wind have falling installation costs but require grid integration planning, and coal remains economically important in many developing nations. Understanding these trade-offs is key to smart energy policy.",
+      },
+      {
+        heading: "The Energy Landscape: Past, Present, and Future",
+        body: "The story of energy is the story of human progress. Coal powered the Industrial Revolution. Oil made modern transportation possible. Natural gas provided cleaner-burning alternatives for heating and electricity. Hydroelectric dams electrified entire regions. Nuclear brought energy density to a new level. Solar and wind are now the fastest-growing sources worldwide. No single technology brought us here — it was the cumulative innovation across all energy sources. As a nuclear scholar, it's important to understand and respect this full picture while exploring how nuclear can contribute to the next chapter.",
       },
       {
         heading: "Fusion: The Next Frontier",
