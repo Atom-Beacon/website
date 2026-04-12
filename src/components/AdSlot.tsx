@@ -1,17 +1,10 @@
 /**
- * AdSlot — a reserved, labeled container for Google AdSense auto-ads.
+ * AdSlot — reserved, labeled areas for Google AdSense Auto Ads.
  *
- * Google AdSense Auto Ads automatically detects these reserved areas
- * and fills them when appropriate. This component provides a consistent,
- * honest container that is clearly labeled as advertising.
- *
- * The actual ad serving is handled by the AdSense script in index.html.
- * Auto ads will scan the page and place ads in optimal positions.
- * These slots act as hints / reserved space.
- *
- * @todo: Replace data-ad-client with real AdSense publisher ID (ca-pub-XXXXXXXXXXXXXXXX)
- * @todo: Replace data-ad-slot with real ad unit IDs from AdSense dashboard
- * @todo: Test ad rendering in production — ads won't show on localhost
+ * The AdSense script in index.html enables Auto Ads; Google places ads where
+ * they fit. These blocks give predictable vertical space and clear labeling.
+ * (Manual display units would use ins.adsbygoogle + data-ad-slot from the
+ * AdSense dashboard and a matching (adsbygoogle).push({}) — not used here.)
  */
 
 interface AdSlotProps {
@@ -30,19 +23,7 @@ const AdSlot = ({ placement, className = "" }: AdSlotProps) => {
         <span className="text-[10px] uppercase tracking-widest text-muted-foreground/50 font-medium">
           Advertisement
         </span>
-        {/* 
-          Google AdSense auto-ad container.
-          In production, the adsbygoogle script will fill this automatically.
-          The ins element below is the standard AdSense responsive ad unit.
-        */}
-        <ins
-          className="adsbygoogle block"
-          style={{ display: "block", minHeight: "90px" }}
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="XXXXXXXXXX"
-          data-ad-format="auto"
-          data-full-width-responsive="true"
-        />
+        <div className="min-h-[90px] w-full" aria-hidden="true" />
       </div>
     </aside>
   );
