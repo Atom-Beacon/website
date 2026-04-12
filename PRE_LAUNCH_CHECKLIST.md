@@ -97,6 +97,16 @@
 
 ---
 
+### Company Profiles / Investor Section
+- [ ] Stock data: Yahoo Finance unofficial API may be blocked by CORS in production — set up a serverless edge function proxy or switch to Financial Modeling Prep / Alpha Vantage free tier
+- [ ] Add SEC EDGAR filing links for U.S.-listed companies
+- [ ] Add structured funding timeline visualization for private companies
+- [ ] Add analyst ratings/consensus links where available
+- [ ] Add insider transaction data links
+- [ ] Verify all company funding amounts, valuations, and ticker symbols are current
+- [ ] Add competitor comparison tables per company profile
+- [ ] Review and update all company news links — current links point to newsroom landing pages, not specific articles
+
 ## 🟢 NICE TO HAVE — Future Enhancements
 
 ### Features
