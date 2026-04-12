@@ -15,6 +15,8 @@ import Terms from "./pages/Terms.tsx";
 import Cookies from "./pages/Cookies.tsx";
 import Accessibility from "./pages/Accessibility.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import CompanyDirectory from "./pages/CompanyDirectory.tsx";
+import CompanyProfile from "./pages/CompanyProfile.tsx";
 
 // Learn sub-pages
 import WhatIsNuclearEnergy from "./pages/learn/WhatIsNuclearEnergy.tsx";
@@ -44,6 +46,8 @@ const App = () => (
             <Route path="/learn/reactor-types" element={<ReactorTypes />} />
             <Route path="/learn/fuel-and-waste" element={<FuelAndWaste />} />
             <Route path="/business" element={<Business />} />
+            <Route path="/companies" element={<CompanyDirectory />} />
+            <Route path="/companies/:slug" element={<CompanyProfile />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/kids" element={<Kids />} />
             <Route path="/privacy" element={<Privacy />} />
