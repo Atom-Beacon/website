@@ -14,7 +14,7 @@
 - [ ] Apply for AdSense approval (requires live site with real content — may need to launch without ads first, then add)
 - [ ] Enable Auto Ads in AdSense dashboard after approval
 - [ ] Test that ads render correctly on mobile and desktop
-- [ ] Verify ads.txt is accessible at `https://atombeacon.dev/ads.txt`
+- [ ] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt`
 
 ### GDPR / Privacy Compliance
 - [ ] Cookie consent banner currently stores consent in localStorage — consider integrating a Google-certified Consent Management Platform (CMP) for EEA/UK/Switzerland traffic (required for personalized AdSense ads)
@@ -24,9 +24,9 @@
 - [ ] Ensure cookie consent banner blocks AdSense script until consent is granted (required by GDPR)
 
 ### Domain & Hosting
-- [ ] Verify `atombeacon.dev` domain is registered and configured
-- [ ] Update `<link rel="canonical">` in index.html if using a different domain
-- [ ] Update all sitemap.xml URLs if domain differs from `atombeacon.dev`
+- [ ] Verify `atombeacon.com` domain is registered and DNS configured for hosting
+- [ ] Confirm production URLs: `<link rel="canonical">` and JSON-LD in `index.html` use `https://atombeacon.com`
+- [ ] Confirm `public/sitemap.xml` and `public/robots.txt` reference `https://atombeacon.com`
 - [ ] Set up HTTPS (mandatory for AdSense and SEO)
 - [ ] Publish the site and verify all routes load correctly
 
