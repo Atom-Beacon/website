@@ -14,7 +14,7 @@
 - [ ] Apply for AdSense approval (requires live site with real content — may need to launch without ads first, then add)
 - [ ] Enable Auto Ads in AdSense dashboard after approval
 - [ ] Test that ads render correctly on mobile and desktop
-- [x] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt` *(HTTP 200; body matches repo — checked 2026-04-13)*
+- [x] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt` *(HTTP 200; body matches repo — re-checked 2026-04-13)*
 
 ### GDPR / Privacy Compliance
 - [ ] Cookie consent banner currently stores consent in localStorage — consider integrating a Google-certified Consent Management Platform (CMP) for EEA/UK/Switzerland traffic (required for personalized AdSense ads)
@@ -24,17 +24,17 @@
 - [ ] Ensure cookie consent banner blocks AdSense script until consent is granted (required by GDPR)
 
 ### Domain & Hosting
-- [ ] Verify `atombeacon.com` domain is registered and DNS configured for hosting
+- [x] Verify `atombeacon.com` domain is registered and DNS configured for hosting
 - [x] Confirm production URLs: `<link rel="canonical">` and JSON-LD in `index.html` use `https://atombeacon.com`
 - [x] Confirm `public/sitemap.xml` and `public/robots.txt` reference `https://atombeacon.com`
-- [x] Set up HTTPS (mandatory for AdSense and SEO) *(live responses use HTTPS + `strict-transport-security` — checked 2026-04-13)*
-- [ ] Publish the site and verify all routes load correctly *(production returns **404** on direct URLs like `/news`, `/blog` — missing SPA fallback / `_redirects`; `npm run build` succeeds locally)*
+- [x] Set up HTTPS (mandatory for AdSense and SEO) *(live: HTTPS + HSTS — re-checked 2026-04-13)*
+- [ ] Publish the site and verify all routes load correctly *(repo: `public/_redirects` → `/* /index.html 200` copied to `dist/` on build; **redeploy** Netlify and re-test **direct** `/news`, `/blog`, `/privacy`, `/learn/reactor-types` — should return **200** with app shell, not Netlify “Page not found”)*
 
 ### SEO — Core Setup
 - [ ] Submit sitemap.xml to Google Search Console
 - [ ] Submit sitemap.xml to Bing Webmaster Tools
 - [ ] Verify structured data using Google's Rich Results Test (https://search.google.com/test/rich-results)
-- [x] Replace placeholder OG image (`lovable.dev/opengraph-image-p98pqg.png`) with a branded Atom Beacon image *(repo: `og:image` → `https://atombeacon.com/og_image1.jpg`, asset `public/og_image1.jpg`; **deployed site returned 404 for that URL** at last check — redeploy needed)*
+- [x] Replace placeholder OG image (`lovable.dev/opengraph-image-p98pqg.png`) with a branded Atom Beacon image *(repo + live: `https://atombeacon.com/og_image1.jpg` returns **200** `image/jpeg` — re-checked 2026-04-13)*
 - [ ] Add unique `<title>` and `<meta description>` per page (currently only the homepage has them) *(confirmed: no `react-helmet` / per-route meta in `src/` — SPA still uses `index.html` defaults for all routes)*
 - [ ] Test pages with Google's PageSpeed Insights
 
@@ -143,12 +143,15 @@
 
 ## 📝 Notes
 
-### Automated validation log (2026-04-13)
+### Automated validation log
 
-- **Repo / build:** `npm run build` succeeds; AdSense client ID and `ads.txt` use real publisher `4575124953371835` (not placeholders). `AdSlot.tsx` uses Auto Ads–style reserved regions only.
-- **Live (https://atombeacon.com):** `ads.txt` OK; HTTPS/HSTS OK; **`/news`, `/blog`, `/privacy`, `/learn/reactor-types` return 404** on direct fetch — add Netlify/Vite SPA rewrite (`/*` → `/index.html`) or equivalent before claiming “all routes load.” **`/og_image1.jpg` 404** on live while present in `public/` — redeploy.
-- **GDPR / ads:** AdSense script loads in `index.html` unconditionally; cookie banner does not gate it. Privacy/Cookie pages do not yet list AdSense-specific disclosures.
-- **Per-route SEO:** No per-page `<title>` / meta in app code; checklist item remains open.
+**Re-evaluation (2026-04-13, after deploy sync):**
+
+- **Live `https://atombeacon.com`:** `/` **200**; `/ads.txt` **200**; `/og_image1.jpg` **200** (`image/jpeg`). HTTPS + HSTS unchanged.
+- **SPA / deep links:** **In-repo fix:** `public/_redirects` with `/* /index.html 200` (see `CODEBASE_REVIEW.md` §6.2). **Live:** after the next production deploy, re-fetch those paths; if they still **404**, confirm Netlify **Publish directory** is `dist` and that no conflicting redirect rules exist in the Netlify UI.
+- **Repo:** AdSense ID + `ads.txt` unchanged; no `react-helmet` / per-route meta in `src/`; GDPR/CMP/AdSense-disclosure items still open. `index.html` includes GA4 (`gtag`) without consent gating — “Analytics → GA4 (consent-gated)” checklist row still applies.
+
+**Earlier snapshot (2026-04-13, first pass):** OG image was404 on live before the later deploy; that gap is **closed** as of re-check.
 
 - All `@todo` markers in the codebase can be found by searching for `@todo` across `src/` and `public/`
 - The AdSense integration uses Auto Ads — one script tag handles all placement. The `AdSlot` component provides reserved positions that Auto Ads can use as hints, but Google may also place ads in other suitable locations.

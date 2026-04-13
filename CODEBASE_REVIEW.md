@@ -10,7 +10,7 @@
 
 The project is a **well-organized client-only SPA** with a clear `src/pages` + `src/components` split, consistent Tailwind styling, and thoughtful SEO touches (`index.html` meta, JSON-LD, `public/sitemap.xml`, `robots.txt`). Production builds succeed (`npm run build`).
 
-Highest-impact gaps for Netlify and operations: **SPA fallback redirects are not defined in-repo**, **Playwright references a package that is not installed**, and **TypeScript strictness is largely disabled**. Branding still leaks **Lovable-hosted Open Graph images** in `index.html`. A large **shadcn/ui surface area appears unused**, increasing bundle size and maintenance noise.
+Highest-impact gaps for Netlify and operations: **Playwright references a package that is not installed**, and **TypeScript strictness is largely disabled**. **SPA fallback** for deep links is **implemented** via `public/_redirects` (see §6.2). Branding still leaks **Lovable-hosted Open Graph images** in `index.html`. A large **shadcn/ui surface area appears unused**, increasing bundle size and maintenance noise.
 
 ---
 
@@ -75,20 +75,25 @@ Netlify works well with **Vite’s default output directory `dist`** and **`npm 
 
 References: [Netlify — Configure builds](https://docs.netlify.com/configure-builds/overview/), [File-based configuration](https://docs.netlify.com/configure-builds/file-based-configuration/).
 
-### 6.2 Single Page App (SPA) routing — **action recommended**
+### 6.2 Single Page App (SPA) routing — **addressed (2026-04-13)**
 
 This app uses **React Router `BrowserRouter`**. Direct requests to paths like `/learn/safety` must serve **`index.html`** so the client router can run. Netlify’s default for static sites is to return **404** for unknown paths unless a **redirect rule** exists.
 
-**Add** `public/_redirects` (copied to `dist/` on build) with:
+**Implemented:** `public/_redirects` with a rewrite rule (Vite copies `public/` into `dist/`, so the deployed site includes `dist/_redirects`):
 
 ```text
 /*    /index.html   200
 ```
 
-(Or the equivalent in `netlify.toml` `[[redirects]]`.)  
-Reference: [Netlify — Redirects and rewrites](https://docs.netlify.com/routing/redirects/).
+Reference: [Netlify — Redirects and rewrites](https://docs.netlify.com/routing/redirects/), [Page not found — SPA redirect](https://docs.netlify.com/resources/troubleshooting/page-not-found-error-guide/).
 
-Without this, shared links and refreshes on deep routes can break in production depending on Netlify settings.
+**Verification:** After `npm run build`, confirm `dist/_redirects` contains the rule above. On Netlify, keep **Publish directory** set to `dist` so this file is deployed.
+
+**Residual risks / caveats:**
+
+- If the Netlify UI defines **conflicting** redirect rules, resolve duplicates so one clear SPA fallback remains authoritative.
+- If **Publish directory** is not `dist` (or build output is customized), ensure `_redirects` still lands in the published root.
+- **Other environments** (e.g. some static file servers, S3 without error-document routing) do not read `_redirects`; behavior is Netlify-specific unless you add equivalent config elsewhere.
 
 ### 6.3 Headers (optional hardening)
 
@@ -152,7 +157,7 @@ No server secrets are required for the current static build. If you later add **
 
 ## 10. Suggested priority order
 
-1. **Add Netlify SPA fallback** (`public/_redirects` or `netlify.toml`) so deep links work reliably.  
+1. ~~**Add Netlify SPA fallback** (`public/_redirects` or `netlify.toml`) so deep links work reliably.~~ **Done** — `public/_redirects` with `/* /index.html 200`.  
 2. **Replace Lovable OG image URLs** with self-hosted assets on `atombeacon.com`.  
 3. **Fix Playwright setup** (install Lovable config package **or** switch to stock Playwright config).  
 4. **Move font `@import` to top of `src/index.html` or top of `index.css`** to clear the Vite/CSS warning.  
@@ -162,4 +167,4 @@ No server secrets are required for the current static build. If you later add **
 
 ---
 
-*This document is a review artifact only; it does not change runtime behavior by itself.*
+*This document is a review artifact only; it does not change runtime behavior by itself. In-repo fixes called out above (e.g. §6.2 SPA `_redirects`) are implemented in the codebase separately from this file.*
