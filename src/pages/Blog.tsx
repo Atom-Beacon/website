@@ -1,5 +1,6 @@
 import { User, Calendar, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { BRAND_MARK } from "@/lib/brand";
 
 interface BlogPost {
   id: string;
@@ -55,8 +56,8 @@ We're on the cusp of a nuclear renaissance — and SMRs are leading the charge.`
     title: "Every Energy Source Has a Purpose",
     author: "Editorial Team",
     date: "March 20, 2026",
-    excerpt: "At Atom Beacon, we champion nuclear — but we respect every form of energy that keeps the world running. Here's our philosophy.",
-    content: `One thing you won't find on Atom Beacon is negativity toward any form of energy. That's by design — and by conviction.
+    excerpt: `At ${BRAND_MARK}, we champion nuclear — but we respect every form of energy that keeps the world running. Here's our philosophy.`,
+    content: `One thing you won't find on ${BRAND_MARK} is negativity toward any form of energy. That's by design — and by conviction.
 
 Too often, energy discussions devolve into tribal debates. Nuclear advocates dismiss renewables. Renewable supporters dismiss nuclear. And both sometimes forget that fossil fuels — coal, oil, and natural gas — built the modern world and continue to power billions of lives today.
 
@@ -66,7 +67,7 @@ Solar and wind are abundant, increasingly affordable, and can be deployed quickl
 
 A balanced energy portfolio is like a diversified investment portfolio — it's stronger because of its diversity, not in spite of it.
 
-At Atom Beacon, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down any other energy source. Every form of power generation has contributed to human progress.
+At ${BRAND_MARK}, we focus on nuclear because we believe it's underrepresented and undervalued in public discourse. But we'll never advance nuclear by tearing down any other energy source. Every form of power generation has contributed to human progress.
 
 The goal is a future where every community has access to reliable, affordable energy. That means valuing every tool in the toolbox.`,
     tags: ["opinion", "energy diversity", "philosophy"],
@@ -81,7 +82,7 @@ const Blog = () => {
       <div className="max-w-3xl mx-auto">
         <h1 className="font-heading text-4xl font-bold text-foreground mb-2">Blog & Opinions</h1>
         <p className="text-muted-foreground mb-12 text-lg">
-          Editorials, commentary, and thought pieces from the Atom Beacon team and guest contributors.
+          Editorials, commentary, and thought pieces from the {BRAND_MARK} team and guest contributors.
         </p>
 
         <div className="space-y-8">

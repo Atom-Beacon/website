@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://atombeacon.dev/sitemap.xml
+Sitemap: https://atombeacon.com/sitemap.xml

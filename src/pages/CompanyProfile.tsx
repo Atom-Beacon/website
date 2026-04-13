@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { ArrowLeft, ExternalLink, TrendingUp, Building2, MapPin, ArrowRight, AlertTriangle, DollarSign } from "lucide-react";
+import { BRAND_MARK } from "@/lib/brand";
 import { companies } from "./Business";
 
 /* @todo: 
@@ -212,7 +213,7 @@ const CompanyProfile = () => {
             <AlertTriangle className="h-4 w-4" /> Important Disclaimer
           </h3>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            The information on this page is provided for educational and informational purposes only and does not constitute investment advice, financial advice, or a recommendation to buy or sell any security. Market data may be delayed or inaccurate. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions. Atom Beacon is not a registered broker-dealer or investment advisor.
+            The information on this page is provided for educational and informational purposes only and does not constitute investment advice, financial advice, or a recommendation to buy or sell any security. Market data may be delayed or inaccurate. Always conduct your own due diligence and consult with a qualified financial advisor before making investment decisions. {BRAND_MARK} is not a registered broker-dealer or investment advisor.
           </p>
         </div>
       </div>
