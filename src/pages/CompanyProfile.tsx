@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ArrowLeft, ExternalLink, TrendingUp, TrendingDown, Building2, MapPin, ArrowRight, AlertTriangle, DollarSign } from "lucide-react";
+import { useEffect, useRef } from "react";
+import { ArrowLeft, ExternalLink, TrendingUp, Building2, MapPin, ArrowRight, AlertTriangle, DollarSign } from "lucide-react";
 import { companies } from "./Business";
 
 /* @todo: 
@@ -12,98 +12,61 @@ import { companies } from "./Business";
    - Add insider transaction data links
 */
 
-interface StockQuote {
-  symbol: string;
-  regularMarketPrice: number;
-  regularMarketChange: number;
-  regularMarketChangePercent: number;
-  regularMarketDayHigh: number;
-  regularMarketDayLow: number;
-  regularMarketVolume: number;
-  fiftyTwoWeekHigh: number;
-  fiftyTwoWeekLow: number;
-  marketCap: number;
-  shortName: string;
-}
+const TradingViewWidget = ({ symbol, exchange }: { symbol: string; exchange?: string }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const formatMarketCap = (cap: number): string => {
-  if (cap >= 1e12) return `$${(cap / 1e12).toFixed(2)}T`;
-  if (cap >= 1e9) return `$${(cap / 1e9).toFixed(2)}B`;
-  if (cap >= 1e6) return `$${(cap / 1e6).toFixed(1)}M`;
-  return `$${cap.toLocaleString()}`;
+  useEffect(() => {
+    if (!containerRef.current) return;
+    containerRef.current.innerHTML = '';
+
+    const tvSymbol = exchange === "TSX" ? `TSX:${symbol}` 
+      : exchange === "LSE" ? `LSE:${symbol}`
+      : symbol;
+
+    const script = document.createElement("script");
+    script.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js";
+    script.async = true;
+    script.innerHTML = JSON.stringify({
+      symbols: [[tvSymbol]],
+      chartOnly: false,
+      width: "100%",
+      height: 400,
+      locale: "en",
+      colorTheme: "light",
+      autosize: true,
+      showVolume: true,
+      showMA: false,
+      hideDateRanges: false,
+      hideMarketStatus: false,
+      hideSymbolLogo: false,
+      scalePosition: "right",
+      scaleMode: "Normal",
+      fontFamily: "Space Grotesk, sans-serif",
+      fontSize: "10",
+      noTimeScale: false,
+      valuesTracking: "1",
+      changeMode: "price-and-percent",
+      chartType: "area",
+      lineWidth: 2,
+      lineType: 0,
+      dateRanges: ["1d|1", "1m|30", "3m|60", "12m|1D", "60m|1W", "all|1M"],
+    });
+    containerRef.current.appendChild(script);
+  }, [symbol, exchange]);
+
+  return (
+    <div className="tradingview-widget-container rounded-md overflow-hidden border border-border">
+      <div ref={containerRef} />
+      <p className="text-[10px] text-muted-foreground text-center py-1">
+        Market data by <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">TradingView</a>
+      </p>
+    </div>
+  );
 };
-
-const formatVolume = (vol: number): string => {
-  if (vol >= 1e6) return `${(vol / 1e6).toFixed(2)}M`;
-  if (vol >= 1e3) return `${(vol / 1e3).toFixed(1)}K`;
-  return vol.toLocaleString();
-};
-
-/*
-  @todo: Stock data integration notes
-  -----------------------------------------
-  Yahoo Finance's unofficial v8 API (query2.finance.yahoo.com) is used here.
-  It is free but unofficial and may break or be rate-limited without notice.
-  
-  For production, consider:
-  - Financial Modeling Prep (financialmodelingprep.com) — free tier: 250 requests/day
-  - Alpha Vantage (alphavantage.co) — free tier: 25 requests/day
-  - Twelve Data (twelvedata.com) — free tier: 800 requests/day
-  - Polygon.io — free tier: 5 requests/min
-  
-  All these have CORS issues from browser — would need a serverless proxy.
-  For now we link to external financial data providers as a reliable fallback.
-*/
 
 const CompanyProfile = () => {
   const { slug } = useParams<{ slug: string }>();
   const company = companies.find((c) => c.slug === slug);
-  const [quote, setQuote] = useState<StockQuote | null>(null);
-  const [quoteError, setQuoteError] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!company?.ticker || !company.isPublic) return;
-
-    const fetchQuote = async () => {
-      setLoading(true);
-      try {
-        // Use a CORS-friendly proxy for Yahoo Finance API
-        // @todo: Replace with a dedicated edge function or serverless proxy for production
-        const res = await fetch(
-          `https://query1.finance.yahoo.com/v8/finance/chart/${company.ticker}?interval=1d&range=1d`,
-          { headers: { 'User-Agent': 'Mozilla/5.0' } }
-        );
-        if (!res.ok) throw new Error("Failed to fetch");
-        const data = await res.json();
-        const result = data?.chart?.result?.[0];
-        const meta = result?.meta;
-        if (meta) {
-          setQuote({
-            symbol: meta.symbol,
-            regularMarketPrice: meta.regularMarketPrice,
-            regularMarketChange: meta.regularMarketPrice - meta.chartPreviousClose,
-            regularMarketChangePercent: ((meta.regularMarketPrice - meta.chartPreviousClose) / meta.chartPreviousClose) * 100,
-            regularMarketDayHigh: meta.regularMarketDayHigh || meta.regularMarketPrice,
-            regularMarketDayLow: meta.regularMarketDayLow || meta.regularMarketPrice,
-            regularMarketVolume: meta.regularMarketVolume || 0,
-            fiftyTwoWeekHigh: meta.fiftyTwoWeekHigh || 0,
-            fiftyTwoWeekLow: meta.fiftyTwoWeekLow || 0,
-            marketCap: 0, // Not available in chart endpoint
-            shortName: company.name,
-          });
-        } else {
-          setQuoteError(true);
-        }
-      } catch {
-        setQuoteError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchQuote();
-  }, [company]);
 
   if (!company) {
     return (
@@ -113,8 +76,6 @@ const CompanyProfile = () => {
       </div>
     );
   }
-
-  const isPositive = quote && quote.regularMarketChange >= 0;
 
   return (
     <div className="container py-12">
@@ -153,42 +114,9 @@ const CompanyProfile = () => {
               <TrendingUp className="h-5 w-5 text-primary" /> Market Data
             </h2>
 
-            {loading && <p className="text-muted-foreground text-sm">Loading market data...</p>}
+            <TradingViewWidget symbol={company.ticker} exchange={company.exchange} />
 
-            {quote && !loading && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                <div className="bg-background p-3 rounded-md border border-border">
-                  <p className="text-xs text-muted-foreground mb-1">Price</p>
-                  <p className="text-xl font-bold text-foreground">${quote.regularMarketPrice.toFixed(2)}</p>
-                  <p className={`text-sm font-medium ${isPositive ? 'text-green-600' : 'text-red-500'}`}>
-                    {isPositive ? '+' : ''}{quote.regularMarketChange.toFixed(2)} ({isPositive ? '+' : ''}{quote.regularMarketChangePercent.toFixed(2)}%)
-                  </p>
-                </div>
-                <div className="bg-background p-3 rounded-md border border-border">
-                  <p className="text-xs text-muted-foreground mb-1">Day Range</p>
-                  <p className="text-sm font-medium text-foreground">${quote.regularMarketDayLow.toFixed(2)} – ${quote.regularMarketDayHigh.toFixed(2)}</p>
-                </div>
-                <div className="bg-background p-3 rounded-md border border-border">
-                  <p className="text-xs text-muted-foreground mb-1">52-Week Range</p>
-                  <p className="text-sm font-medium text-foreground">${quote.fiftyTwoWeekLow.toFixed(2)} – ${quote.fiftyTwoWeekHigh.toFixed(2)}</p>
-                </div>
-                <div className="bg-background p-3 rounded-md border border-border">
-                  <p className="text-xs text-muted-foreground mb-1">Volume</p>
-                  <p className="text-sm font-medium text-foreground">{formatVolume(quote.regularMarketVolume)}</p>
-                </div>
-              </div>
-            )}
-
-            {quoteError && !loading && (
-              <div className="bg-muted/50 p-4 rounded-md mb-4">
-                <p className="text-sm text-muted-foreground flex items-center gap-2">
-                  <AlertTriangle className="h-4 w-4" />
-                  Live market data is temporarily unavailable. View current data on the links below.
-                </p>
-              </div>
-            )}
-
-            <div className="flex flex-wrap gap-3 text-sm">
+            <div className="flex flex-wrap gap-3 text-sm mt-4">
               <a
                 href={`https://finance.yahoo.com/quote/${company.ticker}/`}
                 target="_blank"
