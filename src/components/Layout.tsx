@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Atom } from "lucide-react";
+import { BRAND_MARK, TM, formatCopyrightLine, TRADEMARK_ATTRIBUTION } from "@/lib/brand";
 import CookieConsent from "./CookieConsent";
 
 const navLinks = [
@@ -24,7 +25,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <Link to="/" className="flex items-center gap-2 group">
             <Atom className="h-8 w-8 text-primary group-hover:animate-spin" />
             <span className="font-heading text-xl font-bold text-foreground tracking-tight">
-              Atom <span className="text-primary">Beacon</span>
+              Atom{" "}
+              <span className="text-primary">
+                Beacon<span className="text-[0.65em] font-normal align-super ml-0.5">{TM}</span>
+              </span>
             </span>
           </Link>
 
@@ -86,7 +90,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Atom className="h-6 w-6 text-primary" />
-                <span className="font-heading text-lg font-bold text-foreground">Atom Beacon</span>
+                <span className="font-heading text-lg font-bold text-foreground">{BRAND_MARK}</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Promoting nuclear energy as part of a clean, diverse energy future. All energy sources have a role to play.
@@ -122,8 +126,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Atom Beacon. All rights reserved.</p>
-            <p className="mt-1">
+            <p>{formatCopyrightLine(new Date().getFullYear())}</p>
+            <p className="mt-1 text-xs sm:text-sm">{TRADEMARK_ATTRIBUTION}</p>
+            <p className="mt-3">
               Disclaimer: Opinions expressed in the blog section are those of individual authors and do not constitute professional energy policy advice.
             </p>
           </div>

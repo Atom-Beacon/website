@@ -8,13 +8,13 @@
 ## 🔴 CRITICAL — Must Complete Before Launch
 
 ### AdSense Setup
-- [ ] Replace `ca-pub-XXXXXXXXXXXXXXXX` in `index.html` with your real Google AdSense publisher ID
-- [ ] Replace `ca-pub-XXXXXXXXXXXXXXXX` in `public/ads.txt` with your real publisher ID
-- [ ] Replace placeholder `data-ad-client` and `data-ad-slot` values in `src/components/AdSlot.tsx`
+- [x] Replace `ca-pub-XXXXXXXXXXXXXXXX` in `index.html` with your real Google AdSense publisher ID *(repo: `ca-pub-4575124953371835`)*
+- [x] Replace `ca-pub-XXXXXXXXXXXXXXXX` in `public/ads.txt` with your real publisher ID *(matches `pub-4575124953371835`)*
+- [x] Replace placeholder `data-ad-client` and `data-ad-slot` values in `src/components/AdSlot.tsx` *(no manual ad units — Auto Ads + reserved `AdSlot` regions only; no placeholder client/slot attrs)*
 - [ ] Apply for AdSense approval (requires live site with real content — may need to launch without ads first, then add)
 - [ ] Enable Auto Ads in AdSense dashboard after approval
 - [ ] Test that ads render correctly on mobile and desktop
-- [ ] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt`
+- [x] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt` *(HTTP 200; body matches repo — checked 2026-04-13)*
 
 ### GDPR / Privacy Compliance
 - [ ] Cookie consent banner currently stores consent in localStorage — consider integrating a Google-certified Consent Management Platform (CMP) for EEA/UK/Switzerland traffic (required for personalized AdSense ads)
@@ -25,17 +25,17 @@
 
 ### Domain & Hosting
 - [ ] Verify `atombeacon.com` domain is registered and DNS configured for hosting
-- [ ] Confirm production URLs: `<link rel="canonical">` and JSON-LD in `index.html` use `https://atombeacon.com`
-- [ ] Confirm `public/sitemap.xml` and `public/robots.txt` reference `https://atombeacon.com`
-- [ ] Set up HTTPS (mandatory for AdSense and SEO)
-- [ ] Publish the site and verify all routes load correctly
+- [x] Confirm production URLs: `<link rel="canonical">` and JSON-LD in `index.html` use `https://atombeacon.com`
+- [x] Confirm `public/sitemap.xml` and `public/robots.txt` reference `https://atombeacon.com`
+- [x] Set up HTTPS (mandatory for AdSense and SEO) *(live responses use HTTPS + `strict-transport-security` — checked 2026-04-13)*
+- [ ] Publish the site and verify all routes load correctly *(production returns **404** on direct URLs like `/news`, `/blog` — missing SPA fallback / `_redirects`; `npm run build` succeeds locally)*
 
 ### SEO — Core Setup
 - [ ] Submit sitemap.xml to Google Search Console
 - [ ] Submit sitemap.xml to Bing Webmaster Tools
 - [ ] Verify structured data using Google's Rich Results Test (https://search.google.com/test/rich-results)
-- [ ] Replace placeholder OG image (`lovable.dev/opengraph-image-p98pqg.png`) with a branded Atom Beacon image
-- [ ] Add unique `<title>` and `<meta description>` per page (currently only the homepage has them)
+- [x] Replace placeholder OG image (`lovable.dev/opengraph-image-p98pqg.png`) with a branded Atom Beacon image *(repo: `og:image` → `https://atombeacon.com/og_image1.jpg`, asset `public/og_image1.jpg`; **deployed site returned 404 for that URL** at last check — redeploy needed)*
+- [ ] Add unique `<title>` and `<meta description>` per page (currently only the homepage has them) *(confirmed: no `react-helmet` / per-route meta in `src/` — SPA still uses `index.html` defaults for all routes)*
 - [ ] Test pages with Google's PageSpeed Insights
 
 ### Content Accuracy
@@ -45,13 +45,14 @@
   - Reactor Types page: Gen IV details, fusion progress section
   - Environment page: mining environmental impacts, biodiversity section
   - Fuel & Waste page: advanced fuel cycles, recycling details
+  *(grep in `src/` still finds these `@todo` markers — not cleared)*
 - [ ] Proofread all pages for spelling, grammar, and tone consistency
 - [ ] Ensure the "Disclaimer" in the footer is legally reviewed
 
 ### Legal
 - [ ] Have a lawyer review Privacy Policy, Terms of Use, and Cookie Policy
-- [ ] Add a clear editorial independence disclaimer on the Blog page
-- [ ] Verify accessibility compliance (WCAG 2.1 AA minimum)
+- [x] Add a clear editorial independence disclaimer on the Blog page *(Blog footer: opinions are authors’; managed by site operator — not a formal legal “independence” statement)*
+- [ ] Verify accessibility compliance (WCAG 2.1 AA minimum) *(Accessibility page states WCAG 2.1 AA intent; no audit evidence in repo)*
 
 ---
 
@@ -76,7 +77,7 @@
 - [ ] Kids Zone — verify age-appropriate language with educators; add interactive elements
 
 ### News Feed Reliability
-- [ ] The news feed relies on rss2json.com (free tier) — monitor for rate limits
+- [ ] The news feed relies on rss2json.com (free tier) — monitor for rate limits *(implementation uses rss2json — see `src/pages/News.tsx`)*
 - [ ] Consider a server-side proxy or edge function to fetch news (eliminates CORS issues entirely)
 - [ ] Add caching to avoid redundant fetches on every page load
 - [ ] Consider NewsAPI.org paid plan for better article metadata
@@ -141,6 +142,13 @@
 ---
 
 ## 📝 Notes
+
+### Automated validation log (2026-04-13)
+
+- **Repo / build:** `npm run build` succeeds; AdSense client ID and `ads.txt` use real publisher `4575124953371835` (not placeholders). `AdSlot.tsx` uses Auto Ads–style reserved regions only.
+- **Live (https://atombeacon.com):** `ads.txt` OK; HTTPS/HSTS OK; **`/news`, `/blog`, `/privacy`, `/learn/reactor-types` return 404** on direct fetch — add Netlify/Vite SPA rewrite (`/*` → `/index.html`) or equivalent before claiming “all routes load.” **`/og_image1.jpg` 404** on live while present in `public/` — redeploy.
+- **GDPR / ads:** AdSense script loads in `index.html` unconditionally; cookie banner does not gate it. Privacy/Cookie pages do not yet list AdSense-specific disclosures.
+- **Per-route SEO:** No per-page `<title>` / meta in app code; checklist item remains open.
 
 - All `@todo` markers in the codebase can be found by searching for `@todo` across `src/` and `public/`
 - The AdSense integration uses Auto Ads — one script tag handles all placement. The `AdSlot` component provides reserved positions that Auto Ads can use as hints, but Google may also place ads in other suitable locations.

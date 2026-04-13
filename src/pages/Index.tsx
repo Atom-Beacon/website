@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Atom, Newspaper, BookOpen, Pencil, Baby, Building2 } from "lucide-react";
+import { BRAND_MARK } from "@/lib/brand";
 import heroImage from "@/assets/hero-atomic.jpg";
 
 const features = [
@@ -59,7 +60,7 @@ const Index = () => {
               Powering Tomorrow with the Atom
             </h1>
             <p className="text-lg text-primary-foreground/80 mb-8 max-w-xl">
-              Welcome to Atom Beacon — your trusted source for nuclear energy news, education, and thoughtful commentary. We believe every energy source has its place, and nuclear deserves a seat at the table.
+              Welcome to {BRAND_MARK} — your trusted source for nuclear energy news, education, and thoughtful commentary. We believe every energy source has its place, and nuclear deserves a seat at the table.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
@@ -83,7 +84,7 @@ const Index = () => {
       <section className="container py-20">
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Explore Atom Beacon
+            Explore {BRAND_MARK}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Whether you're a policy expert, a curious student, or just getting started — there's something here for everyone.

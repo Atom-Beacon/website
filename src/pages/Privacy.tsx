@@ -1,9 +1,13 @@
+import { BRAND_MARK, LEGAL_ENTITY } from "@/lib/brand";
+
 const Privacy = () => (
   <div className="container py-12 max-w-3xl mx-auto">
     <h1 className="font-heading text-4xl font-bold text-foreground mb-6">Privacy Policy</h1>
     <div className="retro-card space-y-4 text-muted-foreground leading-relaxed">
       <p><strong className="text-foreground">Last updated:</strong> April 2026</p>
-      <p>Atom Beacon ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.</p>
+      <p>
+        {LEGAL_ENTITY} (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) operates the {BRAND_MARK} website and is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.
+      </p>
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Information We Collect</h2>
       <p>We may collect anonymous usage data such as pages visited, time spent on the site, and general geographic region. We do not collect personally identifiable information unless voluntarily submitted (e.g., via a contact form or newsletter signup).</p>
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Cookies</h2>
