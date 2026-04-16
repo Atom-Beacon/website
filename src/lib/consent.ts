@@ -1,9 +1,6 @@
 export const COOKIE_CONSENT_KEY = "atom-beacon-cookie-consent";
 export const OPEN_COOKIE_PREFERENCES_EVENT = "atom-beacon-open-cookie-preferences";
 
-const GA_MEASUREMENT_ID = "G-4V1LPN0KS0";
-const ADSENSE_CLIENT_ID = "ca-pub-4575124953371835";
-
 type ConsentLevel = "all" | "essential";
 
 export interface StoredConsent {
@@ -15,6 +12,11 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    googlefc?: {
+      showRevocationMessage?: () => void;
+      callbackQueue?: Array<Record<string, () => void>>;
+    };
+    __tcfapi?: (command: string, version: number, callback: (...args: unknown[]) => void, ...args: unknown[]) => void;
   }
 }
 
@@ -41,23 +43,6 @@ function ensureGtag() {
       window.dataLayer.push(args);
     };
   }
-}
-
-function loadScriptOnce(id: string, src: string, attributes?: Record<string, string>) {
-  if (document.getElementById(id)) return;
-
-  const script = document.createElement("script");
-  script.id = id;
-  script.async = true;
-  script.src = src;
-
-  if (attributes) {
-    Object.entries(attributes).forEach(([key, value]) => {
-      script.setAttribute(key, value);
-    });
-  }
-
-  document.head.appendChild(script);
 }
 
 export function readStoredConsent(): StoredConsent | null {
@@ -93,35 +78,33 @@ export function updateGoogleConsent(level: ConsentLevel) {
   window.gtag?.("consent", "update", toConsentState(level));
 }
 
+/**
+ * Consent defaults and Google tag bootstrap run in index.html before any Google URL loads.
+ * This function only syncs a returning visitor's saved ROW/rest-of-world choice.
+ */
 export function initializeConsentSystem() {
   ensureGtag();
-  window.gtag?.("consent", "default", toConsentState("essential"));
 
   const consent = readStoredConsent();
   if (!consent) return;
 
   updateGoogleConsent(consent.level);
-  if (consent.level === "all") {
-    loadGoogleTags();
-  }
-}
-
-export function loadGoogleTags() {
-  loadScriptOnce("ga4-script", `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
-  window.gtag?.("js", new Date());
-  window.gtag?.("config", GA_MEASUREMENT_ID);
-
-  loadScriptOnce(
-    "adsense-script",
-    `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`,
-    { crossorigin: "anonymous" },
-  );
 }
 
 export function applyConsent(level: ConsentLevel) {
   setStoredConsent(level);
   updateGoogleConsent(level);
-  if (level === "all") {
-    loadGoogleTags();
+}
+
+/**
+ * EEA/UK/CH: Google's Funding Choices exposes `googlefc.showRevocationMessage`.
+ * Rest of world: dispatch event so the local CookieConsent banner opens.
+ */
+export function openCookieOrCmpPreferences() {
+  const showRevocation = window.googlefc?.showRevocationMessage;
+  if (typeof showRevocation === "function") {
+    showRevocation();
+    return;
   }
+  window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
 }

@@ -31,7 +31,25 @@ const Cookies = () => (
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">How Consent Works on This Site</h2>
       <p>
-        We show a consent banner that allows you to choose:
+        Google Analytics and AdSense load on each page with{" "}
+        <a
+          href="https://developers.google.com/tag-platform/security/concepts/consent-mode"
+          className="text-primary hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consent Mode
+        </a>{" "}
+        defaults that deny non-essential cookies until you choose otherwise.
+      </p>
+      <p>
+        <strong className="text-foreground">EEA/UK/Switzerland:</strong> Google&apos;s certified TCF
+        consent message (from AdSense Privacy &amp; messaging) collects your choices. When you do not
+        allow personalization, ads may still be shown in a non-personalized or limited form per
+        Google&apos;s configuration.
+      </p>
+      <p>
+        <strong className="text-foreground">Other regions:</strong> we may show our own banner:
       </p>
       <ul className="list-disc pl-6 space-y-1">
         <li>
@@ -42,8 +60,8 @@ const Cookies = () => (
         </li>
       </ul>
       <p>
-        You can reopen these controls at any time using the &quot;Cookie Preferences&quot; link in
-        the footer.
+        Use &quot;Cookie Preferences&quot; in the footer to reopen Google&apos;s consent options (when
+        available on your device) or our banner where applicable.
       </p>
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Managing Cookies</h2>
@@ -54,9 +72,17 @@ const Cookies = () => (
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">EEA/UK/Switzerland</h2>
       <p>
-        For visitors in the EEA, UK, and Switzerland, non-essential cookies are intended to be
-        used only with consent. We are implementing a Google-certified TCF-compatible CMP path
-        for personalized ad compliance in these regions.
+        For visitors in the EEA, UK, and Switzerland, non-essential cookies are used only in line
+        with the choices you make in Google&apos;s European regulations message. The AdSense script
+        must be on the page for that message to appear — see{" "}
+        <a
+          href="https://support.google.com/adsense/answer/10960768"
+          className="text-primary hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Create a European regulations message
+        </a>.
       </p>
     </div>
   </div>

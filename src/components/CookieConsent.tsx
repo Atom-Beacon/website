@@ -7,15 +7,40 @@ import {
   readStoredConsent,
 } from "@/lib/consent";
 
+const TCF_POLL_MS = 100;
+const ROW_BANNER_DELAY_MS = 1500;
+const TCF_POLL_MAX_MS = 10000;
+
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = readStoredConsent();
-    if (!consent) {
-      const timer = setTimeout(() => setVisible(true), 1000);
-      return () => clearTimeout(timer);
-    }
+    if (readStoredConsent()) return;
+
+    let cancelled = false;
+
+    const showTimer = window.setTimeout(() => {
+      if (!cancelled) setVisible(true);
+    }, ROW_BANNER_DELAY_MS);
+
+    const pollId = window.setInterval(() => {
+      if (typeof window.__tcfapi === "function") {
+        window.clearInterval(pollId);
+        window.clearTimeout(showTimer);
+        if (!cancelled) setVisible(false);
+      }
+    }, TCF_POLL_MS);
+
+    const stopPollId = window.setTimeout(() => {
+      window.clearInterval(pollId);
+    }, TCF_POLL_MAX_MS);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(showTimer);
+      window.clearInterval(pollId);
+      window.clearTimeout(stopPollId);
+    };
   }, []);
 
   useEffect(() => {
@@ -37,11 +62,10 @@ const CookieConsent = () => {
         <div className="flex items-start gap-3">
           <Cookie className="h-6 w-6 text-primary shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h3 className="font-heading font-semibold text-foreground mb-1">We value your privacy 🍪</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-1">We value your privacy</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              We use cookies to run core site features, measure traffic with Google Analytics, and
-              support Google AdSense advertising.
-              You can choose to accept all cookies or only essential ones.
+              Outside the EEA/UK/Switzerland we use this banner to set analytics and ad cookie preferences.
+              In those regions, Google&apos;s consent message is shown instead.
               Read our{" "}
               <Link to="/cookies" className="text-primary hover:underline">Cookie Policy</Link>{" "}
               and{" "}

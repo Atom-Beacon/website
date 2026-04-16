@@ -37,17 +37,30 @@ const Privacy = () => (
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Google Services We Use</h2>
       <p>
-        We use Google Analytics 4 and plan to use Google AdSense. These services may process
-        identifiers, device/browser metadata, and interaction data to provide measurement and
-        advertising features. We load Google Analytics and AdSense only after an &quot;Accept All&quot;
-        cookie preference is selected.
+        We use Google Analytics 4 and Google AdSense. These services may process identifiers,
+        device/browser metadata, and interaction data for measurement and advertising. The Google
+        tag and AdSense script are present on our pages; we use{" "}
+        <a
+          href="https://developers.google.com/tag-platform/security/concepts/consent-mode"
+          className="text-primary hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Google Consent Mode
+        </a>{" "}
+        so non-essential storage defaults to denied until you make a choice. In the EEA, UK, and
+        Switzerland, choices are collected through Google&apos;s European regulations (TCF) consent
+        message. Elsewhere, you may use our cookie banner to grant or deny analytics and ads storage.
       </p>
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Consent Choices and Withdrawal</h2>
       <p>
-        You can choose &quot;Accept All&quot; or &quot;Essential Only&quot; in our cookie banner. You can
-        revisit this choice at any time by using the &quot;Cookie Preferences&quot; link in the footer.
-        You can also block/delete cookies in your browser settings.
+        In the EEA/UK/Switzerland, use Google&apos;s consent dialog to accept or decline personalized
+        advertising and related processing; when personalization is not allowed, Google may still
+        serve limited or non-personalized ads depending on your choices and Google&apos;s settings.
+        Outside those regions, you can choose &quot;Accept All&quot; or &quot;Essential Only&quot; in our cookie
+        banner. Use &quot;Cookie Preferences&quot; in the footer to reopen Google&apos;s message (where
+        available) or our banner. You can also block or delete cookies in your browser settings.
       </p>
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Data Sharing</h2>
@@ -85,8 +98,10 @@ const Privacy = () => (
 
       <h2 className="font-heading text-xl font-semibold text-foreground pt-4">Contact</h2>
       <p>
-        For privacy-related requests, please contact {LEGAL_ENTITY} through the website&apos;s
-        published contact channel.
+        For privacy-related requests, please contact {LEGAL_ENTITY} at{" "}
+        <a href="mailto:privacy@atombeacon.com" className="text-primary hover:underline">
+          privacy@atombeacon.com
+        </a>.
       </p>
     </div>
   </div>

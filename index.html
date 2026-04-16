@@ -3,7 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google scripts are loaded after consent in src/lib/consent.ts -->
+    <!-- Referrer policy: AdSense Privacy & messaging may require cross-origin Referrer to be sent -->
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <!--
+      Google Consent Mode defaults MUST run before any gtag.js / AdSense request.
+      AdSense code must be present on the page for European regulations (Funding Choices) messages
+      to display — see https://support.google.com/adsense/answer/10960768
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        analytics_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        functionality_storage: "granted",
+        security_storage: "granted",
+        personalization_storage: "denied",
+      });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4V1LPN0KS0"></script>
+    <script>
+      gtag("js", new Date());
+      gtag("config", "G-4V1LPN0KS0");
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575124953371835" crossorigin="anonymous"></script>
     <title>Atom Beacon™ — Nuclear Energy News, Education & Commentary</title>
     <meta name="description" content="Your trusted source for nuclear energy news, education, and thoughtful commentary. Promoting clean nuclear energy as part of a diverse energy future." />
     <meta name="author" content="ADGL Enterprises, LLC" />
@@ -71,7 +96,6 @@
     }
     </script>
 
-    <!-- AdSense script is loaded after consent in src/lib/consent.ts -->
   </head>
 
   <body>

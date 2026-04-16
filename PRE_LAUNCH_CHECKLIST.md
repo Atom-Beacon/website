@@ -17,61 +17,56 @@
 - [x] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt` *(HTTP 200; body matches repo — re-checked 2026-04-13)*
 
 ### GDPR / Privacy Compliance
-- [~] Cookie consent system now gates GA4/AdSense loading and writes Google consent states; still need a Google-certified CMP for EEA/UK/Switzerland personalized ads
-- [ ] Recommended CMPs: Cookiebot, OneTrust, Quantcast Choice, or Google's own Funding Choices
-- [x] Update Privacy Policy page with specific Google Analytics/AdSense disclosures and consent withdrawal path
-- [x] Update Cookie Policy page with explicit analytics/advertising cookie categories and examples
-- [x] Ensure cookie consent blocks GA4 and AdSense script loading until "Accept All" is granted
+- [~] Google Consent Mode + AdSense on every page (required for Funding Choices / European regulations CMP); verify TCF live in EEA/UK/CH after deploy
+- [x] European regulations message: published in AdSense Privacy & messaging (publisher-side); **site must still satisfy Google's technical prerequisites** (see handoff notes below)
+- [x] Update Privacy Policy page with GA/AdSense, Consent Mode, regional CMP vs ROW banner, and contact `privacy@atombeacon.com`
+- [x] Update Cookie Policy page with categories, Consent Mode, and link to Google's European regulations help
+- [x] Rest-of-world: optional cookie banner updates Google consent via `applyConsent()`; EEA/UK/CH: banner suppressed when `__tcfapi` is present
 
 #### GDPR implementation status (detailed handoff notes)
 
-**Current implementation in repo (as of Apr 2026):**
-- Added `src/lib/consent.ts` as a centralized consent controller.
-- Consent state is stored under localStorage key `atom-beacon-cookie-consent`.
-- Consent choices:
-  - `all` -> loads Google Analytics + AdSense scripts and updates Google consent state to granted.
-  - `essential` -> keeps non-essential consent denied and does not load GA/AdSense scripts.
-- Google script loading has been removed from `index.html` head and is now dynamic after consent.
-- App startup now initializes consent defaults in `src/main.tsx` via `initializeConsentSystem()`.
-- Cookie banner (`src/components/CookieConsent.tsx`) now calls consent APIs rather than just writing raw localStorage.
-- Footer includes a "Cookie Preferences" control (`src/components/Layout.tsx`) to reopen consent UI.
+**Why "Published" in AdSense did not show the TCF CMP on-site (root cause):**
+- Google's help for European regulations messages states you must have **[the AdSense code on your site](https://support.google.com/adsense/answer/10960768)**.
+- Google's [Privacy & messaging testing docs](https://support.google.com/adsense/answer/10924669) say the **AdSense code needs to be on the page** for message preview/parameters to work.
+- Our earlier implementation **removed** the AdSense script from `index.html` and only injected it **after** the rest-of-world "Accept All" click. That meant **no AdSense bootstrap on first paint**, so **Funding Choices / TCF never had a hook to run** in EEA/UK/CH — even though the message was "Published" in the dashboard.
 
-**Files changed for GDPR baseline:**
-- `src/lib/consent.ts` (new) - consent state, Google consent updates, script injection.
-- `src/main.tsx` - consent initialization on app boot.
-- `src/components/CookieConsent.tsx` - consent wiring + updated banner copy.
-- `src/components/Layout.tsx` - persistent "Cookie Preferences" reopen control.
-- `index.html` - removed unconditional GA4 and AdSense script tags.
-- `src/pages/Privacy.tsx` - expanded GA/AdSense, legal basis, rights, transfers, withdrawal language.
-- `src/pages/Cookies.tsx` - expanded cookie categories and Google cookie examples.
+**Architecture after fix (intended behavior):**
+- `index.html` loads, in order:
+  1. Inline `gtag('consent','default', …)` with **all ad/analytics-related types denied** (Consent Mode defaults).
+  2. `gtag.js` (GA4) + `gtag('config', …)` — **advanced consent mode**: tags load but respect denied defaults (cookieless pings for GA when `analytics_storage` is denied; see [Consent mode reference](https://support.google.com/analytics/answer/13802165)).
+  3. **AdSense** `adsbygoogle.js` — required so **Privacy & messaging / European regulations** can initialize and expose **`__tcfapi`** where applicable.
+- `<meta name="referrer" content="strict-origin-when-cross-origin">` added per [European regulations message](https://support.google.com/adsense/answer/10960768) guidance on referrer policy eligibility.
+- `src/lib/consent.ts`:
+  - **`initializeConsentSystem()`** (from `src/main.tsx`): only reapplies **stored** ROW choice from `localStorage` (`atom-beacon-cookie-consent`) via `gtag('consent','update',…)`. Does **not** re-set defaults (those live in `index.html`).
+  - **`applyConsent()`**: used by the ROW banner only; persists choice + `consent update`.
+  - **`openCookieOrCmpPreferences()`**: calls `window.googlefc.showRevocationMessage()` when available ([Funding Choices API](https://developers.google.com/funding-choices/fc-api-docs#googlefc-showRevocationMessage)); otherwise dispatches the event that opens the local banner.
+  - **`CookieConsent`**: starts a short timer to show the ROW banner, but **polls for `__tcfapi`**; if Google's CMP appears, the local banner is **cancelled or dismissed** (avoids double prompts in EEA/UK/CH).
+- `src/components/CookieConsent.tsx`: ROW-only banner (after TCF check); copy explains regional split.
+- `src/components/Layout.tsx`: footer **Cookie Preferences** → `openCookieOrCmpPreferences()`.
 
-**What is now operational:**
-- The banner is connected to behavior (no longer cosmetic).
-- GA4 and AdSense scripts are blocked until user grants "Accept All".
-- Google consent mode state is written/updated in client code.
-- Users have a persistent path to revisit consent settings from the footer.
-- Policy pages now align with implemented site behavior (consent-gated analytics/ads).
+**Files to read for a future agent:**
+- `index.html` — Consent Mode defaults + GA4 + AdSense load order.
+- `src/lib/consent.ts` — consent updates, TCF wait, Funding Choices reopen.
+- `src/main.tsx` — `initializeConsentSystem()`.
+- `src/components/CookieConsent.tsx` — ROW vs EEA behavior.
+- `src/components/Layout.tsx` — footer preferences.
+- `src/pages/Privacy.tsx`, `src/pages/Cookies.tsx` — legal copy aligned to this model.
 
-**What is still NOT complete for full Google ad compliance in EEA/UK/CH:**
-- A Google-certified TCF CMP has NOT been configured yet.
-- Without certified CMP integration, personalized ads eligibility/compliance for EEA/UK/CH remains incomplete.
-- Geo-specific handling and full TCF consent-string handling are not yet implemented via CMP.
-
-**Risk callout (must understand):**
-- Current implementation is a strong technical baseline but is not the final compliance endpoint for AdSense personalized ads in EEA/UK/Switzerland.
-- Google policy requires a certified CMP integrated with IAB TCF for those regions.
+**Non-personalized ads when personalization is denied:**
+- Configured in **AdSense → Privacy & messaging → European regulations** (and related account ad serving / privacy settings), not only in front-end code.
+- After deploy, confirm in an EEA VPN session: deny personalization → expect **non-personalized or limited ads** per Google's behavior for that choice; grant → personalized eligible.
 
 #### GDPR remaining actions (execution order)
 
-1. Pick CMP path (recommended: Google Funding Choices for fastest Google-stack path).
-2. Configure and publish certified CMP message(s) for EEA/UK/Switzerland traffic.
-3. Ensure CMP is live on production domain `atombeacon.com`.
-4. Validate consent behavior:
-   - No GA/AdSense before opt-in.
-   - Consent updates after user choice.
-   - Proper behavior for "essential only".
-5. Confirm policy wording still matches final CMP behavior/copy exactly.
-6. Re-test production with regional traffic simulation and browser tag debugging.
+1. **Deploy** the commit that restores AdSense + Consent defaults in `index.html` (until live, EEA CMP may still be broken).
+2. In **AdSense → Privacy & messaging**, keep European regulations message **Published** for `atombeacon.com` (already done).
+3. **Verify in EEA/UK/CH** (VPN):
+   - Within a few seconds of load, `typeof __tcfapi === "function"` in DevTools console.
+   - Network tab: requests to Funding Choices / Google messaging hosts (e.g. `fundingchoicesmessages.google.com`) may appear when the CMP runs.
+4. **Test Google's forced preview** (works only with AdSense on page): add `?fc=alwaysshow&fctype=gdpr` to a URL ([docs](https://support.google.com/adsense/answer/10924669)).
+5. **Cookie Preferences** link: should call `googlefc.showRevocationMessage()` when loaded; if nothing happens, CMP not initialized — recheck AdSense on page and domain association.
+6. **ROW regression:** with VPN off, local banner should still appear after ~1s (if no `__tcfapi`) and **Accept All** / **Essential Only** should still update consent.
+7. Confirm **European regulations** "Do not consent" / non-personalized paths in the AdSense UI match product intent; re-test ads behavior.
 
 #### Exact Google locations user must visit (where to get required setup details)
 
@@ -96,15 +91,26 @@
 
 #### Information needed from site owner (to finish final integration)
 
-- CMP decision:
-  - "Use Google Funding Choices / AdSense Privacy & messaging" OR
-  - "Use third-party certified CMP (name: ___)".
-- Any account-specific IDs/snippets generated in AdSense Privacy & messaging setup (if provided).
-- Final ad behavior decision for EEA/UK/CH:
-  - personalized ads when consented?
-  - non-personalized ads fallback when denied?
-- Public privacy contact channel to display in policy text (email/contact page URL).
-- Confirmation that legal review approves current policy wording and consent UX text.
+- [x] CMP decision: **Google AdSense Privacy & messaging** (European regulations / Funding Choices) — *publisher confirmed Published*.
+- [ ] After next **production deploy** of this repo: confirm EEA/UK/CH session shows **`__tcfapi`** and Google's consent UI (see steps above).
+- [ ] Confirm in AdSense UI that when users **deny personalization**, behavior matches intent (**non-personalized / limited ads** as configured).
+- [x] Public privacy contact: **`privacy@atombeacon.com`** (in `Privacy.tsx` after deploy).
+- [ ] Legal review sign-off on updated Privacy/Cookie copy (Consent Mode + dual-path consent).
+
+#### Live validation snapshot (post-deploy check)
+
+**Last validation:** 2026-04-16 (identified missing AdSense-on-page as root cause); **re-validate after deploying `index.html` fix**.
+
+**Pre-fix live observation (historical):**
+- Homepage HTML had **no** static AdSense/GA in `<head>`; scripts were injected only after ROW "Accept All" → **European regulations CMP could not run** despite "Published" in AdSense.
+
+**Post-fix expected on `https://atombeacon.com` (verify after deploy):**
+- View page source: `<head>` contains inline **Consent Mode default**, **`gtag/js`**, and **`adsbygoogle.js`** (same publisher ID as `ads.txt`).
+- EEA VPN: `typeof __tcfapi === "function"` within a few seconds; consent dialog appears without requiring ROW banner first.
+- Optional: `https://atombeacon.com/?fc=alwaysshow&fctype=gdpr` forces GDPR message preview ([AdSense help](https://support.google.com/adsense/answer/10924669)).
+
+**Owner-provided privacy contact (approved):**
+- `privacy@atombeacon.com` (use in policy/legal pages and privacy requests handling).
 
 ### Domain & Hosting
 - [x] Verify `atombeacon.com` domain is registered and DNS configured for hosting
@@ -212,7 +218,7 @@
 - [ ] Add service worker for offline reading of Learn content
 
 ### Analytics
-- [ ] Set up Google Analytics 4 (with consent-gated loading)
+- [ ] Set up Google Analytics 4 (Consent Mode: tags present; non-essential storage denied until consent — verify reporting matches expectations)
 - [ ] Set up conversion tracking for newsletter signups
 - [ ] Monitor ad revenue vs user experience metrics
 
@@ -232,7 +238,7 @@
 
 - **Live `https://atombeacon.com`:** `/` **200**; `/ads.txt` **200**; `/og_image1.jpg` **200** (`image/jpeg`). HTTPS + HSTS unchanged.
 - **SPA / deep links:** **In-repo fix:** `public/_redirects` with `/* /index.html 200` (see `CODEBASE_REVIEW.md` §6.2). **Live:** after the next production deploy, re-fetch those paths; if they still **404**, confirm Netlify **Publish directory** is `dist` and that no conflicting redirect rules exist in the Netlify UI.
-- **Repo:** AdSense ID + `ads.txt` unchanged; no `react-helmet` / per-route meta in `src/`; GDPR/CMP/AdSense-disclosure items still open. `index.html` includes GA4 (`gtag`) without consent gating — “Analytics → GA4 (consent-gated)” checklist row still applies.
+- **Repo (2026-04-16+):** `index.html` includes GA4 + AdSense with **Google Consent Mode defaults (denied)** before any Google URL loads; European regulations CMP requires AdSense on-page. See **GDPR** section above for EEA verification steps. `react-helmet` / per-route meta still absent in `src/`.
 
 **Earlier snapshot (2026-04-13, first pass):** OG image was404 on live before the later deploy; that gap is **closed** as of re-check.
 

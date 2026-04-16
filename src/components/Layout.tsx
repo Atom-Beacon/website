@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Atom } from "lucide-react";
 import { BRAND_MARK, TM, formatCopyrightLine, TRADEMARK_ATTRIBUTION } from "@/lib/brand";
-import { OPEN_COOKIE_PREFERENCES_EVENT } from "@/lib/consent";
+import { openCookieOrCmpPreferences } from "@/lib/consent";
 import CookieConsent from "./CookieConsent";
 
 const navLinks = [
@@ -17,7 +17,7 @@ const navLinks = [
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const openCookiePreferences = () => window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
+  const openCookiePreferences = () => openCookieOrCmpPreferences();
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-body">
