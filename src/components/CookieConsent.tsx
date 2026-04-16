@@ -7,9 +7,19 @@ import {
   readStoredConsent,
 } from "@/lib/consent";
 
-const TCF_POLL_MS = 100;
-const ROW_BANNER_DELAY_MS = 1500;
-const TCF_POLL_MAX_MS = 10000;
+/** IAB TCF __tcfapi is injected when Google's (or another certified) CMP is active — often after AdSense loads. */
+function hasTcfApi(): boolean {
+  return typeof window.__tcfapi === "function";
+}
+
+/**
+ * Wait this long before showing our fallback banner so EEA/UK/CH sessions have time to
+ * register __tcfapi. A1–2s delay caused Switzerland (and similar) to see the wrong UI.
+ */
+const FALLBACK_SHOW_AFTER_MS = 14_000;
+const TCF_POLL_MS = 150;
+/** Keep watching in case the CMP appears late; hide our banner if it does. */
+const TCF_WATCH_MS = 45_000;
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
@@ -19,25 +29,32 @@ const CookieConsent = () => {
 
     let cancelled = false;
 
-    const showTimer = window.setTimeout(() => {
-      if (!cancelled) setVisible(true);
-    }, ROW_BANNER_DELAY_MS);
+    const hideIfCmp = () => {
+      if (hasTcfApi()) {
+        if (!cancelled) setVisible(false);
+        return true;
+      }
+      return false;
+    };
+
+    const fallbackTimer = window.setTimeout(() => {
+      if (cancelled || hideIfCmp()) return;
+      setVisible(true);
+    }, FALLBACK_SHOW_AFTER_MS);
 
     const pollId = window.setInterval(() => {
-      if (typeof window.__tcfapi === "function") {
-        window.clearInterval(pollId);
-        window.clearTimeout(showTimer);
-        if (!cancelled) setVisible(false);
+      if (hideIfCmp()) {
+        window.clearTimeout(fallbackTimer);
       }
     }, TCF_POLL_MS);
 
     const stopPollId = window.setTimeout(() => {
       window.clearInterval(pollId);
-    }, TCF_POLL_MAX_MS);
+    }, TCF_WATCH_MS);
 
     return () => {
       cancelled = true;
-      window.clearTimeout(showTimer);
+      window.clearTimeout(fallbackTimer);
       window.clearInterval(pollId);
       window.clearTimeout(stopPollId);
     };
@@ -62,28 +79,27 @@ const CookieConsent = () => {
         <div className="flex items-start gap-3">
           <Cookie className="h-6 w-6 text-primary shrink-0 mt-0.5" />
           <div className="flex-1">
-            <h3 className="font-heading font-semibold text-foreground mb-1">We value your privacy</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-1">Cookie preferences</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Outside the EEA/UK/Switzerland we use this banner to set analytics and ad cookie preferences.
-              In those regions, Google&apos;s consent message is shown instead.
+              We use cookies and similar technology for core site functionality, audience measurement, and
+              advertising where permitted. You can allow all optional cookies or only essential cookies.
               Read our{" "}
               <Link to="/cookies" className="text-primary hover:underline">Cookie Policy</Link>{" "}
               and{" "}
-              <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>{" "}
-              for more details.
+              <Link to="/privacy" className="text-primary hover:underline">Privacy Policy</Link>.
             </p>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => accept("all")}
                 className="px-5 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
               >
-                Accept All
+                Accept all optional
               </button>
               <button
                 onClick={() => accept("essential")}
                 className="px-5 py-2 rounded-md text-sm font-medium bg-muted text-muted-foreground hover:bg-border transition-colors"
               >
-                Essential Only
+                Essential only
               </button>
             </div>
           </div>

@@ -43,8 +43,8 @@
   - **`initializeConsentSystem()`** (from `src/main.tsx`): only reapplies **stored** ROW choice from `localStorage` (`atom-beacon-cookie-consent`) via `gtag('consent','update',…)`. Does **not** re-set defaults (those live in `index.html`).
   - **`applyConsent()`**: used by the ROW banner only; persists choice + `consent update`.
   - **`openCookieOrCmpPreferences()`**: calls `window.googlefc.showRevocationMessage()` when available ([Funding Choices API](https://developers.google.com/funding-choices/fc-api-docs#googlefc-showRevocationMessage)); otherwise dispatches the event that opens the local banner.
-  - **`CookieConsent`**: starts a short timer to show the ROW banner, but **polls for `__tcfapi`**; if Google's CMP appears, the local banner is **cancelled or dismissed** (avoids double prompts in EEA/UK/CH).
-- `src/components/CookieConsent.tsx`: ROW-only banner (after TCF check); copy explains regional split.
+  - **`CookieConsent`**: waits **~14s** before showing the **fallback** banner so `__tcfapi` (Google/certified CMP) has time to load in EEA/UK/CH; **polls up to ~45s** and **hides** the fallback if `__tcfapi` appears later. Copy is **neutral** (no “outside your region” text).
+- `src/components/CookieConsent.tsx`: fallback only when no TCF API on the page after the wait; not a substitute for a working AdSense Privacy & messaging deployment.
 - `src/components/Layout.tsx`: footer **Cookie Preferences** → `openCookieOrCmpPreferences()`.
 
 **Files to read for a future agent:**
