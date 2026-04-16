@@ -26,6 +26,7 @@
 #### GDPR implementation status (detailed handoff notes)
 
 **Why "Published" in AdSense did not show the TCF CMP on-site (root causes — cumulative):**
+0. **`gtag('consent','update', { granted… })` on every load from localStorage (fixed):** `initializeConsentSystem()` replayed a stored **Accept all** choice immediately on boot. That tells Google's tags consent is **already final**, which can **suppress Funding Choices** (including `?fc=alwaysshow&fctype=gdpr`). **Fix:** never auto-replay `all`; skip all auto-restore when `fc=alwaysshow`; only auto-replay `essential`.
 1. **Missing AdSense on first paint (fixed earlier):** Google's help for European regulations messages requires **[the AdSense code on your site](https://support.google.com/adsense/answer/10960768)**. Deferring `adsbygoogle.js` until after a custom "Accept All" meant **no hook for Funding Choices** even when the message was Published.
 2. **Missing `wait_for_update` on consent defaults (fixed now):** Google's [Consent Mode guide](https://developers.google.com/tag-platform/security/guides/consent) states that for **asynchronous** CMPs you should set **`wait_for_update`** with a millisecond window so the CMP can call `gtag('consent','update',…)` **before** tags proceed. Without it, measurement/ad tags can proceed out of sync with the TCF layer.
 3. **Tag order:** `adsbygoogle.js` is now placed **before** `gtag/js` so the **ad-stack** (where Privacy & messaging attaches) initializes ahead of GA config.

@@ -79,16 +79,27 @@ export function updateGoogleConsent(level: ConsentLevel) {
 }
 
 /**
- * Consent defaults and Google tag bootstrap run in index.html before any Google URL loads.
- * This function only syncs a returning visitor's saved ROW/rest-of-world choice.
+ * Consent defaults run in `index.html` before Google URLs load.
+ *
+ * **Critical:** Do not replay a full **granted** consent from localStorage on every load when
+ * Google Privacy & messaging should run — that signals consent is already final and can
+ * **suppress Funding Choices**, including `?fc=alwaysshow&fctype=gdpr` previews.
+ *
+ * We only auto-replay **`essential`** (keep non-essential denied). A stored **`all`** is
+ * not replayed here — the user must grant again via Google's dialog or our fallback banner.
  */
 export function initializeConsentSystem() {
-  ensureGtag();
+  if (typeof window === "undefined") return;
+
+  if (new URLSearchParams(window.location.search).get("fc") === "alwaysshow") {
+    return;
+  }
 
   const consent = readStoredConsent();
-  if (!consent) return;
+  if (!consent || consent.level !== "essential") return;
 
-  updateGoogleConsent(consent.level);
+  ensureGtag();
+  updateGoogleConsent("essential");
 }
 
 export function applyConsent(level: ConsentLevel) {
