@@ -25,16 +25,19 @@
 
 #### GDPR implementation status (detailed handoff notes)
 
-**Why "Published" in AdSense did not show the TCF CMP on-site (root cause):**
-- Google's help for European regulations messages states you must have **[the AdSense code on your site](https://support.google.com/adsense/answer/10960768)**.
-- Google's [Privacy & messaging testing docs](https://support.google.com/adsense/answer/10924669) say the **AdSense code needs to be on the page** for message preview/parameters to work.
-- Our earlier implementation **removed** the AdSense script from `index.html` and only injected it **after** the rest-of-world "Accept All" click. That meant **no AdSense bootstrap on first paint**, so **Funding Choices / TCF never had a hook to run** in EEA/UK/CH — even though the message was "Published" in the dashboard.
+**Why "Published" in AdSense did not show the TCF CMP on-site (root causes — cumulative):**
+1. **Missing AdSense on first paint (fixed earlier):** Google's help for European regulations messages requires **[the AdSense code on your site](https://support.google.com/adsense/answer/10960768)**. Deferring `adsbygoogle.js` until after a custom "Accept All" meant **no hook for Funding Choices** even when the message was Published.
+2. **Missing `wait_for_update` on consent defaults (fixed now):** Google's [Consent Mode guide](https://developers.google.com/tag-platform/security/guides/consent) states that for **asynchronous** CMPs you should set **`wait_for_update`** with a millisecond window so the CMP can call `gtag('consent','update',…)` **before** tags proceed. Without it, measurement/ad tags can proceed out of sync with the TCF layer.
+3. **Tag order:** `adsbygoogle.js` is now placed **before** `gtag/js` so the **ad-stack** (where Privacy & messaging attaches) initializes ahead of GA config.
+4. **`adsbygoogle` queue:** `window.adsbygoogle = window.adsbygoogle || []` is set **before** the async AdSense script (Google's async tagging pattern) so early calls queue correctly.
+5. **AdSense account / message targeting (not fixable in repo):** In Privacy & messaging, the European message must apply to **`atombeacon.com`**. Under [EU user consent FAQ](https://support.google.com/adsense/answer/11546682), if you use the IAB framework you must include **"Google Advertising Products"** as a vendor in the CMP configuration — verify in the AdSense message **Settings**, not only "Published" status.
 
 **Architecture after fix (intended behavior):**
 - `index.html` loads, in order:
-  1. Inline `gtag('consent','default', …)` with **all ad/analytics-related types denied** (Consent Mode defaults).
-  2. `gtag.js` (GA4) + `gtag('config', …)` — **advanced consent mode**: tags load but respect denied defaults (cookieless pings for GA when `analytics_storage` is denied; see [Consent mode reference](https://support.google.com/analytics/answer/13802165)).
-  3. **AdSense** `adsbygoogle.js` — required so **Privacy & messaging / European regulations** can initialize and expose **`__tcfapi`** where applicable.
+  1. Inline `gtag('consent','default', …)` with **all ad/analytics-related types denied** plus **`wait_for_update: 3000`** (Consent Mode + time for async CMP to call `consent update`).
+  2. `window.adsbygoogle = …` queue initializer, then **AdSense** `adsbygoogle.js` (before `gtag/js`) so Privacy & messaging can attach to the ad stack.
+  3. `gtag.js` (GA4) + `gtag('config', …)` — measurement respects consent / wait window (see [Consent mode reference](https://support.google.com/analytics/answer/13802165)).
+- **Automated contract test (no browser, no deploy):** `src/index-html.consent.test.ts` asserts load order, `wait_for_update`, and publisher ID. Run: `npm test -- src/index-html.consent.test.ts` (or `npx vitest run src/index-html.consent.test.ts`).
 - `<meta name="referrer" content="strict-origin-when-cross-origin">` added per [European regulations message](https://support.google.com/adsense/answer/10960768) guidance on referrer policy eligibility.
 - `src/lib/consent.ts`:
   - **`initializeConsentSystem()`** (from `src/main.tsx`): only reapplies **stored** ROW choice from `localStorage` (`atom-beacon-cookie-consent`) via `gtag('consent','update',…)`. Does **not** re-set defaults (those live in `index.html`).

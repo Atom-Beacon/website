@@ -13,6 +13,8 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // wait_for_update: async CMPs (AdSense Privacy & messaging / TCF) must update consent
+      // before tags proceed — see https://developers.google.com/tag-platform/security/guides/consent
       gtag("consent", "default", {
         ad_storage: "denied",
         analytics_storage: "denied",
@@ -21,14 +23,19 @@
         functionality_storage: "granted",
         security_storage: "granted",
         personalization_storage: "denied",
+        wait_for_update: 3000,
       });
     </script>
+    <!-- AdSense before gtag: Funding Choices / EU message attaches via the ad tag stack -->
+    <script>
+      window.adsbygoogle = window.adsbygoogle || [];
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575124953371835" crossorigin="anonymous"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4V1LPN0KS0"></script>
     <script>
       gtag("js", new Date());
       gtag("config", "G-4V1LPN0KS0");
     </script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575124953371835" crossorigin="anonymous"></script>
     <title>Atom Beacon™ — Nuclear Energy News, Education & Commentary</title>
     <meta name="description" content="Your trusted source for nuclear energy news, education, and thoughtful commentary. Promoting clean nuclear energy as part of a diverse energy future." />
     <meta name="author" content="ADGL Enterprises, LLC" />
