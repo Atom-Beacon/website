@@ -17,11 +17,94 @@
 - [x] Verify ads.txt is accessible at `https://atombeacon.com/ads.txt` *(HTTP 200; body matches repo — re-checked 2026-04-13)*
 
 ### GDPR / Privacy Compliance
-- [ ] Cookie consent banner currently stores consent in localStorage — consider integrating a Google-certified Consent Management Platform (CMP) for EEA/UK/Switzerland traffic (required for personalized AdSense ads)
+- [~] Cookie consent system now gates GA4/AdSense loading and writes Google consent states; still need a Google-certified CMP for EEA/UK/Switzerland personalized ads
 - [ ] Recommended CMPs: Cookiebot, OneTrust, Quantcast Choice, or Google's own Funding Choices
-- [ ] Update Privacy Policy page with specific AdSense data collection disclosures
-- [ ] Update Cookie Policy page to list specific Google advertising cookies
-- [ ] Ensure cookie consent banner blocks AdSense script until consent is granted (required by GDPR)
+- [x] Update Privacy Policy page with specific Google Analytics/AdSense disclosures and consent withdrawal path
+- [x] Update Cookie Policy page with explicit analytics/advertising cookie categories and examples
+- [x] Ensure cookie consent blocks GA4 and AdSense script loading until "Accept All" is granted
+
+#### GDPR implementation status (detailed handoff notes)
+
+**Current implementation in repo (as of Apr 2026):**
+- Added `src/lib/consent.ts` as a centralized consent controller.
+- Consent state is stored under localStorage key `atom-beacon-cookie-consent`.
+- Consent choices:
+  - `all` -> loads Google Analytics + AdSense scripts and updates Google consent state to granted.
+  - `essential` -> keeps non-essential consent denied and does not load GA/AdSense scripts.
+- Google script loading has been removed from `index.html` head and is now dynamic after consent.
+- App startup now initializes consent defaults in `src/main.tsx` via `initializeConsentSystem()`.
+- Cookie banner (`src/components/CookieConsent.tsx`) now calls consent APIs rather than just writing raw localStorage.
+- Footer includes a "Cookie Preferences" control (`src/components/Layout.tsx`) to reopen consent UI.
+
+**Files changed for GDPR baseline:**
+- `src/lib/consent.ts` (new) - consent state, Google consent updates, script injection.
+- `src/main.tsx` - consent initialization on app boot.
+- `src/components/CookieConsent.tsx` - consent wiring + updated banner copy.
+- `src/components/Layout.tsx` - persistent "Cookie Preferences" reopen control.
+- `index.html` - removed unconditional GA4 and AdSense script tags.
+- `src/pages/Privacy.tsx` - expanded GA/AdSense, legal basis, rights, transfers, withdrawal language.
+- `src/pages/Cookies.tsx` - expanded cookie categories and Google cookie examples.
+
+**What is now operational:**
+- The banner is connected to behavior (no longer cosmetic).
+- GA4 and AdSense scripts are blocked until user grants "Accept All".
+- Google consent mode state is written/updated in client code.
+- Users have a persistent path to revisit consent settings from the footer.
+- Policy pages now align with implemented site behavior (consent-gated analytics/ads).
+
+**What is still NOT complete for full Google ad compliance in EEA/UK/CH:**
+- A Google-certified TCF CMP has NOT been configured yet.
+- Without certified CMP integration, personalized ads eligibility/compliance for EEA/UK/CH remains incomplete.
+- Geo-specific handling and full TCF consent-string handling are not yet implemented via CMP.
+
+**Risk callout (must understand):**
+- Current implementation is a strong technical baseline but is not the final compliance endpoint for AdSense personalized ads in EEA/UK/Switzerland.
+- Google policy requires a certified CMP integrated with IAB TCF for those regions.
+
+#### GDPR remaining actions (execution order)
+
+1. Pick CMP path (recommended: Google Funding Choices for fastest Google-stack path).
+2. Configure and publish certified CMP message(s) for EEA/UK/Switzerland traffic.
+3. Ensure CMP is live on production domain `atombeacon.com`.
+4. Validate consent behavior:
+   - No GA/AdSense before opt-in.
+   - Consent updates after user choice.
+   - Proper behavior for "essential only".
+5. Confirm policy wording still matches final CMP behavior/copy exactly.
+6. Re-test production with regional traffic simulation and browser tag debugging.
+
+#### Exact Google locations user must visit (where to get required setup details)
+
+**A) Google AdSense (primary)**
+- Go to: [https://www.google.com/adsense](https://www.google.com/adsense)
+- In AdSense left nav, open **Privacy & messaging**.
+- Create/configure a **European regulations message** (this is Google's CMP path/Funding Choices style flow for web publishers).
+- During setup you will choose behavior/options and publish to your site.
+- This section is where account-specific message configuration lives; if Google provides any script/config IDs, copy them from here.
+
+**B) Google AdSense Help for certified CMP policy requirement**
+- Publisher requirement details: [https://support.google.com/adsense/answer/13554116](https://support.google.com/adsense/answer/13554116)
+- CMP requirement details: [https://support.google.com/adsense/answer/13554020](https://support.google.com/adsense/answer/13554020)
+- Use these to confirm the certified CMP/TCF requirement for EEA/UK/Switzerland.
+
+**C) Google Analytics (verification)**
+- Go to: [https://analytics.google.com](https://analytics.google.com)
+- Verify your GA4 property (`G-4V1LPN0KS0`) receives data only after consent in your expected mode.
+- Review consent/collection behavior with Google's consent mode docs:
+  - [https://support.google.com/analytics/answer/13802165](https://support.google.com/analytics/answer/13802165)
+  - [https://developers.google.com/tag-platform/security/concepts/consent-mode](https://developers.google.com/tag-platform/security/concepts/consent-mode)
+
+#### Information needed from site owner (to finish final integration)
+
+- CMP decision:
+  - "Use Google Funding Choices / AdSense Privacy & messaging" OR
+  - "Use third-party certified CMP (name: ___)".
+- Any account-specific IDs/snippets generated in AdSense Privacy & messaging setup (if provided).
+- Final ad behavior decision for EEA/UK/CH:
+  - personalized ads when consented?
+  - non-personalized ads fallback when denied?
+- Public privacy contact channel to display in policy text (email/contact page URL).
+- Confirmation that legal review approves current policy wording and consent UX text.
 
 ### Domain & Hosting
 - [x] Verify `atombeacon.com` domain is registered and DNS configured for hosting
