@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X, Atom } from "lucide-react";
 import { BRAND_MARK, TM, formatCopyrightLine, TRADEMARK_ATTRIBUTION } from "@/lib/brand";
+import { OPEN_COOKIE_PREFERENCES_EVENT } from "@/lib/consent";
 import CookieConsent from "./CookieConsent";
 
 const navLinks = [
@@ -16,6 +17,7 @@ const navLinks = [
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const openCookiePreferences = () => window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-body">
@@ -112,6 +114,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/terms" className="hover:text-primary transition-colors">Terms of Use</Link></li>
                 <li><Link to="/cookies" className="hover:text-primary transition-colors">Cookie Policy</Link></li>
+                <li><button type="button" onClick={openCookiePreferences} className="hover:text-primary transition-colors">Cookie Preferences</button></li>
                 <li><Link to="/accessibility" className="hover:text-primary transition-colors">Accessibility</Link></li>
               </ul>
             </div>

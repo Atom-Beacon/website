@@ -1,22 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Cookie, X } from "lucide-react";
-
-const COOKIE_CONSENT_KEY = "atom-beacon-cookie-consent";
+import {
+  OPEN_COOKIE_PREFERENCES_EVENT,
+  applyConsent,
+  readStoredConsent,
+} from "@/lib/consent";
 
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    const consent = readStoredConsent();
     if (!consent) {
       const timer = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timer);
     }
   }, []);
 
+  useEffect(() => {
+    const handleOpenPreferences = () => setVisible(true);
+    window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpenPreferences);
+    return () => window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpenPreferences);
+  }, []);
+
   const accept = (level: "all" | "essential") => {
-    localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({ level, date: new Date().toISOString() }));
+    applyConsent(level);
     setVisible(false);
   };
 
@@ -30,8 +39,9 @@ const CookieConsent = () => {
           <div className="flex-1">
             <h3 className="font-heading font-semibold text-foreground mb-1">We value your privacy 🍪</h3>
             <p className="text-sm text-muted-foreground mb-4">
-              We use cookies to enhance your browsing experience and analyze site traffic. 
-              You can choose to accept all cookies or only essential ones. 
+              We use cookies to run core site features, measure traffic with Google Analytics, and
+              support Google AdSense advertising.
+              You can choose to accept all cookies or only essential ones.
               Read our{" "}
               <Link to="/cookies" className="text-primary hover:underline">Cookie Policy</Link>{" "}
               and{" "}
