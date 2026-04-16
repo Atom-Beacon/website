@@ -14,6 +14,29 @@ interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    id: "4",
+    title: "This Week in Nuclear: Policy Momentum, SMR Deals, and Fuel Supply Signals",
+    author: "Editorial Team",
+    date: "April 16, 2026",
+    excerpt: "If this week felt different in nuclear, you're not imagining it. The headlines weren't just big promises — they showed projects moving from talking points into real-world execution.",
+    content: `Some weeks in energy feel like déjà vu: more announcements, more projections, more "coming soon." This week felt different. The nuclear conversation moved in a way readers can actually feel — less theater, more follow-through.
+
+One reason is that policy movement finally started to look practical. In the U.S., multiple states are actively clearing legal and financial lanes for new nuclear development, which is exactly the kind of behind-the-scenes work that determines whether projects happen or stall. If you want a quick overview of that shift, this piece is worth your time: https://www.world-nuclear-news.org/articles/three-us-states-pave-way-for-new-nuclear
+
+Across the Atlantic, the UK story had the same "execution over slogans" energy. The contract step for first SMR delivery is significant because this is where abstract support gets translated into procurement, supply chains, and hard deadlines. For readers tracking whether SMRs are truly moving into delivery phase, here's the update: https://www.world-nuclear-news.org/articles/contract-signed-for-delivery-of-uks-first-smrs
+
+Fuel-side signals mattered too, and they often get less attention than flashy reactor headlines. But reactors do not run on optimism — they run on real supply chains. New U.S. uranium production activity is one of those foundational developments that makes the rest of the nuclear growth story more believable over time: https://www.world-nuclear-news.org/articles/production-begins-at-us-uranium-project
+
+On the company front, the week also reinforced how many different lanes of nuclear are maturing at the same time. Terrestrial Energy continues to frame the IMSR path around pilot execution and regulatory milestones, and this DOE-linked update provides useful context for where that platform is headed next: https://ir.terrestrialenergy.com/news-releases/news-release-details/terrestrial-energy-executes-doe-agreement-project-tetra-under
+
+Oklo's updates are also interesting beyond share-price chatter, especially because they highlight how partnerships and ecosystem strategy are becoming part of the commercialization race, not an afterthought. This release gives a good window into that approach: https://oklo.com/newsroom/news-details/2026/Oklo-Blykalla-to-Expand-Strategic-Partnership-Through-U-S--Investment-and-Collaboration/default.aspx
+
+And for readers following NuScale, even a straightforward investor-calendar update is a signal in itself right now: the market is watching every operational and financial checkpoint to gauge which SMR developers are tightening their path to deployment. Their latest notice is here: https://www.nuscalepower.com/press-releases/2026/nuscale-power-to-hold-first-quarter-2026-earnings-conference-call
+
+If there is one takeaway from this week, it's this: nuclear progress is becoming more legible. We are seeing policy shifts, contract steps, supply-chain movement, and company-level milestones stack up in the same window. That's what real sector momentum looks like. Not hype. Not perfection. Just steady, tangible movement in the right direction.`,
+    tags: ["weekly roundup", "news", "SMR", "policy"],
+  },
+  {
     id: "1",
     title: "Why Nuclear Deserves a Second Look",
     author: "Editorial Team",

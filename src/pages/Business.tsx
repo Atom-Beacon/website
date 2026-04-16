@@ -232,15 +232,123 @@ export const companies: Company[] = [
     focus: "Integral Molten Salt Reactor (IMSR) design and development",
     purePlay: true,
     isPublic: true,
-    ticker: "TNRG",
-    exchange: "TSX",
-    description: "Terrestrial Energy is developing the Integral Molten Salt Reactor (IMSR), a Generation IV nuclear plant that uses liquid molten salt as both fuel and coolant. Founded in 2013, the company went public via a reverse merger and is now publicly traded. The IMSR is designed to produce both electricity and high-temperature industrial heat (up to 585°C), making it suitable for applications like hydrogen production, desalination, and petrochemical processing — markets that traditional reactors cannot easily serve.",
-    exciting: "The IMSR's use of liquid fuel dissolved directly in molten salt is a fundamentally different approach — it operates at near-atmospheric pressure, eliminating the need for massive pressure vessels and dramatically simplifying safety systems. The reactor's compact design targets a construction timeline of just 4 years. Terrestrial Energy has completed a Phase 2 Vendor Design Review with the Canadian Nuclear Safety Commission (CNSC), positioning it among the most advanced Gen IV designs in regulatory engagement. The company raised over $136 million and achieved a market cap of approximately $660 million as of early 2026.",
+    ticker: "IMSR",
+    exchange: "NASDAQ",
+    description: "Terrestrial Energy is developing the Integral Molten Salt Reactor (IMSR), a Generation IV nuclear plant that uses liquid molten salt as both fuel and coolant. Founded in 2013, the company is now publicly traded under the IMSR ticker. The IMSR is designed to deliver both electricity and high-temperature industrial heat (up to 585 C), targeting applications like hydrogen production, desalination, and petrochemical processing where conventional reactors are often less practical.",
+    exciting: "The IMSR's use of liquid fuel dissolved directly in molten salt is a fundamentally different approach — it operates at near-atmospheric pressure, reducing pressure-driven accident risk and simplifying plant systems. Terrestrial Energy has advanced engagement with both U.S. and Canadian regulators, including DOE pilot program agreements and CNSC vendor design review progress. With fresh public-market capital and a clear industrial heat strategy, IMSR is one of the most closely watched molten salt programs.",
     challenges: "Molten salt reactor technology, while theoretically elegant, has limited operational history — the last MSR (ORNL's Molten-Salt Reactor Experiment) operated in the 1960s. Material corrosion from fluoride salts at high temperatures remains an engineering challenge. The company is pre-revenue and faces a long path to first commercial deployment. Competition from other SMR designs with more conventional (and better-understood) technology is intense.",
     recentNews: [
       { title: "Terrestrial Energy announces Q4 and full year 2025 results", url: "https://ir.terrestrialenergy.com/" },
       { title: "Terrestrial Energy advances CNSC Vendor Design Review for IMSR", url: "https://www.terrestrialenergy.com/news/" },
       { title: "Terrestrial Energy targets industrial heat market with molten salt technology", url: "https://www.terrestrialenergy.com/news/" },
+    ],
+  },
+  {
+    name: "Korea Hydro & Nuclear Power (KHNP)",
+    slug: "khnp",
+    website: "https://www.khnp.co.kr/eng",
+    hq: "Gyeongju, South Korea",
+    focus: "Nuclear plant operation, APR1400 exports, and SMR development",
+    purePlay: true,
+    isPublic: false,
+    fundingInfo: "State-owned utility subsidiary of Korea Electric Power Corporation (KEPCO). KHNP is the core operator of South Korea's nuclear fleet and leads EPC/export programs through Team Korea partnerships.",
+    description: "Korea Hydro & Nuclear Power (KHNP) is South Korea's primary nuclear operator and one of the most experienced builders of standardized pressurized water reactors. It operates a large domestic fleet and is central to the country's export strategy for APR1400 reactors. KHNP's project delivery track record in Korea and the UAE has made it a benchmark for schedule discipline in modern nuclear construction.",
+    exciting: "KHNP combines utility-scale operating know-how with export execution — a rare combination in global nuclear. The company is a leading bidder in new-build markets and is also expanding into advanced reactor work, including SMRs and digital plant upgrades. As countries prioritize energy security, KHNP's ability to deliver full-plant programs has strategic value.",
+    challenges: "As a state-linked entity, KHNP's strategy can shift with national policy cycles. Export projects face geopolitical, financing, and localization hurdles, especially in competitive tenders against Western and state-backed rivals. Long-term profitability is also influenced by domestic tariff and market reform decisions.",
+    recentNews: [
+      { title: "KHNP reports restart and continued operation progress across domestic reactor fleet", url: "https://www.khnp.co.kr/eng/content/688/main.do?mnCd=EN030201" },
+      { title: "KHNP advances international new-build cooperation under Team Korea framework", url: "https://www.khnp.co.kr/eng/content/688/main.do?mnCd=EN030201" },
+      { title: "KHNP expands SMR and advanced nuclear R&D initiatives", url: "https://www.khnp.co.kr/eng/content/688/main.do?mnCd=EN030201" },
+    ],
+  },
+  {
+    name: "Rosatom",
+    slug: "rosatom",
+    website: "https://www.rosatom.ru/en/",
+    hq: "Moscow, Russia",
+    focus: "State nuclear conglomerate: reactor exports, fuel cycle, and services",
+    purePlay: true,
+    isPublic: false,
+    fundingInfo: "State corporation wholly owned by the Russian Federation. Operates across mining, enrichment, fuel fabrication, reactor construction, operations support, and decommissioning.",
+    description: "Rosatom is one of the most vertically integrated nuclear organizations in the world, active across the full value chain from uranium to reactor exports. Through subsidiaries such as ASE and TVEL, it delivers VVER reactor projects, fuel services, and long-term operating support in multiple countries. Its bundled offering often includes financing, fuel, and training.",
+    exciting: "Rosatom's integrated export model has historically allowed rapid international project rollout, particularly in emerging markets seeking turnkey nuclear programs. The company also remains influential in advanced fuel cycles, fast reactors, and isotope production. Few competitors can match its full-stack nuclear delivery capability.",
+    challenges: "Sanctions, geopolitics, and national security concerns are major constraints in many Western-aligned markets. Financing and insurance structures can be harder to secure under heightened political risk. Country customers also face long-term dependence concerns around fuel and service supply continuity.",
+    recentNews: [
+      { title: "Rosatom reports progress on international VVER construction portfolio", url: "https://www.rosatom.ru/en/press-centre/news/" },
+      { title: "Rosatom outlines updates in fuel cycle and enrichment programs", url: "https://www.rosatom.ru/en/press-centre/news/" },
+      { title: "Rosatom highlights global isotope and research reactor developments", url: "https://www.rosatom.ru/en/press-centre/news/" },
+    ],
+  },
+  {
+    name: "China National Nuclear Corporation (CNNC)",
+    slug: "cnnc",
+    website: "https://en.cnnc.com.cn",
+    hq: "Beijing, China",
+    focus: "State nuclear development: reactor construction, fuel cycle, and R&D",
+    purePlay: true,
+    isPublic: false,
+    fundingInfo: "State-owned enterprise under China's central government. CNNC oversees reactor development, engineering, fuel services, and international cooperation through multiple listed and unlisted subsidiaries.",
+    description: "China National Nuclear Corporation (CNNC) is one of the principal organizations behind China's rapid nuclear expansion. The group is involved in domestic construction of Hualong One and other reactor technologies, alongside fuel fabrication, uranium procurement, and research programs. CNNC is also increasingly active in export and partnership discussions across Asia and beyond.",
+    exciting: "CNNC sits at the center of the world's largest current nuclear buildout. The scale and pace of deployment provide valuable execution learning curves, supply chain depth, and manufacturing momentum. CNNC's broad platform across construction, fuel, and operations gives it long-term strategic resilience.",
+    challenges: "Limited transparency compared with publicly listed Western peers can make direct benchmarking more difficult for international investors and analysts. Export growth depends on host-country politics, financing structures, and standards alignment. Global market access can also be constrained by trade and security tensions.",
+    recentNews: [
+      { title: "CNNC reports continued progress on domestic Hualong One construction program", url: "https://en.cnnc.com.cn/col/col16553/index.html" },
+      { title: "CNNC highlights advances in fuel cycle and nuclear technology R&D", url: "https://en.cnnc.com.cn/col/col16553/index.html" },
+      { title: "CNNC expands international nuclear cooperation initiatives", url: "https://en.cnnc.com.cn/col/col16553/index.html" },
+    ],
+  },
+  {
+    name: "EDF (Électricité de France)",
+    slug: "edf",
+    website: "https://www.edf.fr/en",
+    hq: "Paris, France",
+    focus: "Utility-scale nuclear generation and new EPR2 reactor program",
+    purePlay: false,
+    isPublic: false,
+    fundingInfo: "Majority state-owned and fully renationalized by the French government in 2023. EDF operates one of the largest nuclear fleets in the world and anchors France's long-term new-build strategy.",
+    description: "EDF is one of the world's most important nuclear operators, running France's extensive reactor fleet and playing a central role in European energy security. The company is responsible for life-extension investments across existing units while preparing a new generation of EPR2 reactors. EDF also has a significant international presence through engineering, project participation, and subsidiaries.",
+    exciting: "Few organizations have EDF's operating scale and institutional nuclear experience. France's recommitment to nuclear expansion puts EDF at the center of Europe's baseload decarbonization strategy. If EDF can execute EPR2 with improved schedule and cost discipline, it could reset confidence in large-reactor delivery.",
+    challenges: "EDF faces heavy capital requirements, aging assets, and complex outage management. Prior EPR projects experienced high-profile delays and overruns, and investors will closely watch whether execution has materially improved. Electricity pricing policy and political mandates can also affect financial flexibility.",
+    recentNews: [
+      { title: "EDF updates France's nuclear fleet maintenance and production outlook", url: "https://www.edf.fr/en/the-edf-group/dedicated-sections/journalists/all-press-releases" },
+      { title: "EDF advances planning work for France's EPR2 reactor program", url: "https://www.edf.fr/en/the-edf-group/dedicated-sections/journalists/all-press-releases" },
+      { title: "EDF reports progress on long-term nuclear investment roadmap", url: "https://www.edf.fr/en/the-edf-group/dedicated-sections/journalists/all-press-releases" },
+    ],
+  },
+  {
+    name: "Commonwealth Fusion Systems",
+    slug: "commonwealth-fusion-systems",
+    website: "https://cfs.energy",
+    hq: "Devens, Massachusetts, USA",
+    focus: "Fusion energy development (SPARC tokamak and ARC power plant)",
+    purePlay: true,
+    isPublic: false,
+    fundingInfo: "Private MIT spinout founded in 2018. Has raised more than $2 billion from investors including Breakthrough Energy Ventures, Temasek, The Engine, and strategic energy partners.",
+    description: "Commonwealth Fusion Systems (CFS) is building one of the world's most closely watched private fusion programs. Its near-term focus is SPARC, a compact tokamak designed to demonstrate net fusion energy performance using high-temperature superconducting magnets. CFS plans to follow SPARC with ARC, a grid-scale commercial fusion power plant concept.",
+    exciting: "CFS helped prove high-field magnet performance at scale, a major technical unlock for compact tokamak designs. The company has moved quickly from lab breakthroughs to large hardware and facility buildout, with SPARC construction underway in Massachusetts. Its strong capital base and institutional partnerships make CFS a leading contender in fusion commercialization.",
+    challenges: "Fusion timelines remain inherently uncertain, and major plasma physics and materials risks still lie between demonstrations and commercial plants. Capital intensity is extreme even by nuclear standards. CFS must deliver repeatable engineering milestones while managing expectations around power-delivery schedules.",
+    recentNews: [
+      { title: "CFS provides SPARC construction and commissioning pathway updates", url: "https://cfs.energy/news-and-media/" },
+      { title: "CFS details progress in high-temperature superconducting magnet program", url: "https://cfs.energy/news-and-media/" },
+      { title: "CFS advances commercial ARC fusion plant development strategy", url: "https://cfs.energy/news-and-media/" },
+    ],
+  },
+  {
+    name: "General Atomics",
+    slug: "general-atomics",
+    website: "https://www.ga.com",
+    hq: "San Diego, California, USA",
+    focus: "Fusion research, advanced reactors, and nuclear technology systems",
+    purePlay: false,
+    isPublic: false,
+    fundingInfo: "Private defense and technology company with diversified operations spanning aerospace, defense, and energy. Nuclear programs include fusion research and advanced reactor concepts via General Atomics Electromagnetic Systems.",
+    description: "General Atomics is a long-standing U.S. technology company with deep roots in advanced energy and fusion science. It operates key programs such as the DIII-D National Fusion Facility (under U.S. DOE contract) and develops nuclear-related technologies through multiple divisions. While not a pure nuclear equity story, GA remains highly influential in U.S. nuclear innovation ecosystems.",
+    exciting: "General Atomics brings decades of engineering depth and institutional credibility to fusion and advanced reactor work. Its role in DIII-D positions the company close to frontier fusion science, while its broader systems capabilities support commercialization pathways. GA's ability to bridge government research and industrial execution is a meaningful differentiator.",
+    challenges: "Because General Atomics is privately held and diversified, outside investors have limited transparency into standalone nuclear economics. Many programs depend on public-sector funding cycles and long development timelines. Converting research leadership into near-term commercial reactor deployment remains a non-trivial challenge.",
+    recentNews: [
+      { title: "General Atomics reports new milestones at DIII-D fusion research facility", url: "https://www.ga.com/press-releases" },
+      { title: "GA-EMS highlights advanced reactor and fuel cycle development work", url: "https://www.ga.com/press-releases" },
+      { title: "General Atomics expands partnerships across advanced energy systems", url: "https://www.ga.com/press-releases" },
     ],
   },
   {
@@ -374,17 +482,10 @@ export const companies: Company[] = [
   },
 ];
 
-/* @todo: Add the following companies with full profiles when research is complete:
-   - Korea Hydro & Nuclear Power (KHNP) — APR1400 reactor, South Korea's nuclear champion
-   - Rosatom (Russian state nuclear corporation — VVER reactors, global nuclear exporter)
-   - China National Nuclear Corporation (CNNC) — Hualong One reactor
-   - EDF (Électricité de France) — world's largest nuclear fleet operator
-   - Commonwealth Fusion Systems — fusion energy startup (MIT spinoff, SPARC tokamak)
-   - General Atomics — DIII-D tokamak, EM Systems, GA-ESI SMR concepts
-   
-   For each: verify HQ, current CEO, latest financials, and find 3 real recent news headlines with actual URLs.
-   Consider adding a "Fusion Pioneers" subsection for fusion-focused companies.
-   Consider adding geographic filtering (Americas, Europe, Asia) and pure-play vs conglomerate toggle.
+/* @todo:
+   - Add a "Fusion Pioneers" subsection for fusion-focused companies
+   - Add geographic filtering (Americas, Europe, Asia)
+   - Add pure-play vs conglomerate toggle
 */
 
 const Business = () => (
