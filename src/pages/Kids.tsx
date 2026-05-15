@@ -396,6 +396,37 @@ const Kids = () => {
           <Quiz key={selectedLevel} questions={currentQuiz} />
         </div>
 
+        {/* Printable Worksheets */}
+        <div className="retro-card mb-6">
+          <h2 className="font-heading text-2xl font-bold text-foreground mb-2">📄 Printable Worksheets</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Free, classroom-ready PDFs. Color-friendly and grayscale-printable. Each includes an answer key.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <h3 className="font-heading font-bold text-foreground mb-2">Elementary (Grades 3–5)</h3>
+              <ul className="space-y-1 text-sm">
+                <li><a className="text-primary underline" href="/worksheets/elementary-word-search.pdf" download>Word Search (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/elementary-diagram-matching.pdf" download>Diagram Matching (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/elementary-dot-to-dot.pdf" download>Dot-to-Dot (PDF)</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-heading font-bold text-foreground mb-2">Middle School (Grades 6–8)</h3>
+              <ul className="space-y-1 text-sm">
+                <li><a className="text-primary underline" href="/worksheets/middle-school-word-search.pdf" download>Word Search (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/middle-school-diagram-matching.pdf" download>Diagram Matching (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/middle-school-dot-to-dot.pdf" download>Dot-to-Dot (PDF)</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-4">
+            <a className="inline-block px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium" href="/worksheets/teacher-packet.pdf" download>
+              Download Combined Teacher Packet (PDF)
+            </a>
+          </div>
+        </div>
+
         <div className="p-4 rounded-lg bg-muted text-center">
           <p className="text-sm text-muted-foreground">
             👨‍👩‍👧‍👦 Parents & teachers: This content is designed to be accurate and age-appropriate.
