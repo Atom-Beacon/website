@@ -402,7 +402,7 @@ const Kids = () => {
           <p className="text-sm text-muted-foreground mb-4">
             Free, classroom-ready PDFs. Color-friendly and grayscale-printable. Each includes an answer key.
           </p>
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <div>
               <h3 className="font-heading font-bold text-foreground mb-2">Elementary (Grades 3–5)</h3>
               <ul className="space-y-1 text-sm">
@@ -419,10 +419,22 @@ const Kids = () => {
                 <li><a className="text-primary underline" href="/worksheets/middle-school-dot-to-dot.pdf" download>Dot-to-Dot (PDF)</a></li>
               </ul>
             </div>
+            <div>
+              <h3 className="font-heading font-bold text-foreground mb-2">High School (Grades 9–12)</h3>
+              <ul className="space-y-1 text-sm">
+                <li><a className="text-primary underline" href="/worksheets/highschool-problem-set.pdf" download>The Math of the Atom — Problem Set (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/highschool-systems-engineering.pdf" download>Reactor Systems Engineering (PDF)</a></li>
+                <li><a className="text-primary underline" href="/worksheets/highschool-stem-pathways.pdf" download>Your STEM Pathway in Nuclear (PDF)</a></li>
+              </ul>
+              <p className="text-xs text-muted-foreground mt-2">Grade-level rigor in physics, engineering, and career exploration — each includes an answer key.</p>
+            </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex flex-wrap gap-3">
             <a className="inline-block px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium" href="/worksheets/teacher-packet.pdf" download>
-              Download Combined Teacher Packet (PDF)
+              Elementary + Middle Teacher Packet (PDF)
+            </a>
+            <a className="inline-block px-4 py-2 rounded-md bg-secondary text-secondary-foreground text-sm font-medium" href="/worksheets/highschool-teacher-packet.pdf" download>
+              High School Teacher Packet — with Answer Keys (PDF)
             </a>
           </div>
         </div>
