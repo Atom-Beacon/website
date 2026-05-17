@@ -14,6 +14,29 @@ interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    id: "5",
+    title: "Capital, Licenses, and Quiet Wins: Nuclear's Busy Month",
+    author: "Editorial Team",
+    date: "May 16, 2026",
+    excerpt: "From a $94 million federal push for small modular reactors to a Wyoming groundbreaking and a quietly important regulatory approval for Terrestrial Energy, the past four weeks have moved the nuclear business forward on multiple fronts.",
+    content: `The last four weeks have been one of the more substantive stretches the nuclear sector has seen in some time. The story is less about any single headline and more about the cadence: federal dollars, regulatory approvals, construction milestones, and corporate deals are all landing in the same window. For investors and operators alike, that combination matters more than any single press release.
+
+On May 15, the U.S. Department of Energy selected eight companies to share more than $94 million in cost-shared funding aimed at near-term deployment of advanced light-water small modular reactors. BWXT received the largest single award at roughly $21.4 million, with additional grants going to firms working on licensing pathways, supply chain build-out, and site readiness. The dollar figure is modest compared to total project costs, but the structural intent is significant: the program is designed to retire the unglamorous, non-technical barriers — paperwork, qualification, vendor capacity — that have historically slowed first-of-a-kind reactor projects far more than the physics ever did.
+
+That federal push was paired with a tangible groundbreaking. In Wyoming, construction is now underway on TerraPower's Natrium plant near Kemmerer, with federal licensing in hand and state officials openly calling it a "nuclear renaissance" moment. Whatever one thinks of the rhetoric, the underlying point is concrete: a sodium-cooled fast reactor with integrated molten-salt energy storage is moving from drawings into steel and concrete on a U.S. site, with utility-scale ambitions and a clearly defined operating partner in PacifiCorp.
+
+The international picture rounded out the month. China General Nuclear started construction on a fourth Hualong One unit at Taipingling in Guangdong on May 10, and completed initial fuel loading at Taipingling 2 and Changjiang 3 in early May. In Bangladesh, fuel loading wrapped at Rooppur Unit 1, putting the country's first reactor on the runway to first electricity. None of these are speculative builds — they are operational milestones on plants that will be feeding grids within the year. For anyone modeling global nuclear capacity additions, the curve continues to bend upward.
+
+The corporate news has been just as active. NuScale, Oklo, Cameco, and BWXT have all reported quarters that the market is parsing closely, and SMR developer Holtec and reactor service firms continue to land contracts tied to restarts and refurbishments. The investment thesis is no longer "if" advanced nuclear gets built — it is increasingly about which platforms execute fastest, which supply chains scale, and which balance sheets can absorb the first-of-a-kind cost curve.
+
+Which brings us to a development that deserves more attention than it received. On May 12, the Nuclear Regulatory Commission issued a Safety Evaluation Report approving Terrestrial Energy's (NASDAQ: IMSR) Topical Report on Postulated Initiating Events for its Integral Molten Salt Reactor. In plain terms, the NRC has formally accepted the methodology Terrestrial Energy uses to identify and analyze the events a future IMSR plant must be designed to withstand. It is the second such foundational topical report the agency has cleared for the IMSR in recent months, following earlier approval of its Principal Design Criteria framework.
+
+This kind of approval rarely makes the front page. It is procedural, technical, and impossible to summarize in a chart. But for a molten salt reactor developer, foundational topical reports are the scaffolding that every later licensing submission rests on. Each one approved is one less open question when the full construction permit application lands at the NRC. Combined with Terrestrial Energy's previously announced DOE OTA agreement for the Project TETRA pilot, the Texas A&M RELLIS deployment selection, and the recently disclosed collaboration with Riot Platforms exploring up to 4 GW of co-located nuclear capacity for hyperscale AI workloads, the company is building a quietly coherent execution story underneath the headline noise.
+
+Sources: World Nuclear News (DOE SMR funding, May 15, 2026; Rooppur fuel loading, May 12, 2026; Taipingling and Changjiang fuel loading, May 6, 2026); NPR (Wyoming reactor license, May 2, 2026); CGTN (Hualong One Unit 4 construction start, May 12, 2026); Terrestrial Energy investor relations (NRC Safety Evaluation Report, May 12, 2026; Q1 2026 results, May 14, 2026).`,
+    tags: ["news", "monthly roundup", "SMR", "IMSR", "policy"],
+  },
+  {
     id: "4",
     title: "This Week in Nuclear: Policy Momentum, SMR Deals, and Fuel Supply Signals",
     author: "Editorial Team",
