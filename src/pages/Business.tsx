@@ -518,6 +518,24 @@ export const companies: Company[] = [
       { title: "Denison quarterly results and project update", url: "https://www.denisonmines.com/news/" },
     ],
   },
+  {
+    name: "Newcleo",
+    slug: "newcleo",
+    website: "https://www.newcleo.com",
+    hq: "London, United Kingdom (with operations in Italy, France, and Switzerland)",
+    focus: "Lead-cooled fast reactor (LFR) technology and MOX fuel fabrication",
+    purePlay: true,
+    isPublic: false,
+    fundingInfo: "Private, with a pending U.S. public listing. Founded in 2021 by physicist Stefano Buono. Has raised more than €500 million in equity to date, including an $85 million round closed in February 2026. In May 2026, Newcleo announced a definitive business combination agreement with NewHold Investment Corp III (NASDAQ: NHIC) at a $2.4 billion pre-money valuation, supported by a $220 million PIPE. The transaction could deliver up to $429 million in proceeds (before redemptions) and is expected to close in the second half of 2026, with Newcleo trading on Nasdaq under a new ticker upon completion.",
+    description: "Newcleo is a European advanced nuclear developer building a closed-fuel-cycle platform around lead-cooled fast reactor (LFR) technology and mixed-oxide (MOX) fuel made from depleted uranium and plutonium recovered from used nuclear fuel. The company's reference design is a 200 MWe LFR-AS-200 reactor, with a smaller 30 MWe Precursor demonstration reactor planned in Italy as a key intermediate step. Newcleo's strategy combines reactor development with its own MOX fuel manufacturing capability — targeting a vertically integrated offer that turns existing nuclear waste streams into usable fuel.",
+    exciting: "Newcleo's pitch is unusual in advanced nuclear: a credible path to turning today's plutonium and depleted-uranium stockpiles into long-lived fuel, while operating at near-atmospheric pressure with passive safety characteristics of lead coolant. The company has assembled a deep European engineering bench, secured large equity rounds in a difficult capital environment, and is now moving toward a U.S. public listing via SPAC at a $2.4B pre-money valuation. In April 2026, Newcleo also launched pre-application engagement with the U.S. Nuclear Regulatory Commission for its first U.S. advanced reactor and fuel fabrication facility — opening a transatlantic deployment path alongside its Italian and French programs.",
+    challenges: "Lead-cooled fast reactors have limited modern commercial operating history — material compatibility, corrosion control, and inspection of lead-cooled primary systems remain significant engineering challenges. Newcleo is pre-revenue, with first commercial operation years away and substantial capex still ahead for the Precursor and MOX facilities. The SPAC merger is subject to customary closing conditions, shareholder votes, and redemption risk that can materially change net proceeds. European licensing across multiple jurisdictions and U.S. NRC engagement in parallel add regulatory complexity.",
+    recentNews: [
+      { title: "Newcleo plans Nasdaq listing in $2.4 billion SPAC deal with NewHold (NHIC)", url: "https://finimize.com/content/newcleo-plans-nasdaq-listing-in-24-billion-spac-deal" },
+      { title: "Newcleo launches pre-application engagement with U.S. NRC for first U.S. reactor and fuel facility", url: "https://finance.yahoo.com/sectors/energy/articles/newcleo-launches-pre-application-engagement-130000825.html" },
+      { title: "Newcleo closes $85 million funding round to advance Italian Precursor reactor", url: "https://www.nucnet.org/news/european-nuclear-company-newcleo-closes-latest-funding-round-of-usd85-million-2-3-2026" },
+    ],
+  },
 ];
 
 /* @todo:
