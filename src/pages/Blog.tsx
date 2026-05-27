@@ -14,6 +14,29 @@ interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    id: "6",
+    title: "Newcleo Heads to Nasdaq: Lead-Cooled Fast Reactors Meet Public Markets",
+    author: "Editorial Team",
+    date: "May 27, 2026",
+    excerpt: "A European advanced reactor developer is taking the SPAC route to a U.S. listing, while Terrestrial Energy quietly stacks another regulatory win for the IMSR.",
+    content: `Advanced nuclear had another notable week, and the headline belongs to a company that, until recently, most U.S. retail investors had never heard of. London-based Newcleo announced a definitive business combination with NewHold Investment Corp III (NASDAQ: NHIC) at a $2.4 billion pre-money valuation, backed by a $220 million PIPE, with the combined company expected to list on Nasdaq in the second half of 2026. Gross proceeds could reach roughly $429 million before customary redemptions — a meaningful capital raise for any pre-revenue reactor developer, and one of the larger nuclear SPAC transactions since the 2021-2022 cycle.
+
+What makes Newcleo interesting is not the deal structure but the underlying technology bet. Founded in 2021 by physicist Stefano Buono, Newcleo is developing a lead-cooled fast reactor (LFR) paired with its own mixed-oxide (MOX) fuel manufacturing capability. The reference plant is a 200 MWe LFR-AS-200, preceded by a smaller 30 MWe Precursor demonstration reactor planned in Italy. The fuel angle is the part worth lingering on: MOX made from depleted uranium and plutonium recovered from spent light-water reactor fuel turns an existing waste stream into a long-lived energy resource. That is a fundamentally different value proposition from most U.S.-listed SMR peers, which are largely tied to HALEU supply chains that are still being built out.
+
+Lead coolant brings its own well-known engineering challenges — corrosion, inspection, and material compatibility under decades of operation are non-trivial — but it also offers high boiling margins, near-atmospheric operating pressure, and strong passive-safety characteristics. None of this is theoretical to Newcleo's team, which has been working through European licensing pathways for several years and, in April 2026, launched pre-application engagement with the U.S. Nuclear Regulatory Commission for its first U.S. reactor and fuel fabrication facility. The SPAC proceeds, if delivered net of redemptions, are aimed squarely at moving the Precursor toward construction and standing up the U.S. footprint in parallel.
+
+For public-market investors, Newcleo will land in a Nasdaq peer set that already includes NuScale (SMR), Oklo (OKLO), NANO Nuclear (NNE), and Terrestrial Energy (IMSR). It will be the first lead-cooled fast reactor pure-play on a U.S. exchange, and the first MOX-centric advanced nuclear story most U.S. investors will be able to access directly. The closing remains subject to shareholder approval and the usual redemption math that has defined nearly every recent SPAC outcome — so the difference between the headline $429 million and actual net proceeds is the number to watch.
+
+Elsewhere in advanced nuclear, Terrestrial Energy (NASDAQ: IMSR) continues to do the unglamorous work that makes molten salt reactor licensing real. Building on the May 12 NRC Safety Evaluation Report approving its Topical Report on Postulated Initiating Events — the second foundational topical report cleared for the Integral Molten Salt Reactor — Terrestrial Energy has been steadily filling in the technical scaffolding required for a future construction permit application. Each approved topical report is a piece of methodology the company no longer has to defend from scratch when the full application lands.
+
+That patient, modular approach to NRC engagement is starting to pair well with the company's commercial story. The previously announced Department of Energy OTA agreement for Project TETRA, the Texas A&M RELLIS deployment selection, and the disclosed collaboration with Riot Platforms exploring up to 4 GW of co-located IMSR capacity for hyperscale AI workloads all point to a developer that is sequencing regulatory progress, pilot siting, and offtake conversations rather than relying on any single catalyst. For a company whose technology — molten salt as both fuel and coolant — was once treated as a science project, the operational cadence is increasingly that of a real reactor program.
+
+Zooming out, the past few weeks have continued the trend we flagged earlier this month: nuclear's progress is becoming legible. A European LFR developer is choosing the U.S. public markets as the most efficient place to fund the next phase of its program. A North American molten salt developer is methodically converting topical reports into licensing leverage. Construction continues in Wyoming, fuel loading continues in Asia, and the DOE keeps writing cost-shared checks aimed at execution rather than concepts. The sector is not short on noise, but the signal is starting to dominate.
+
+Sources: Finimize (Newcleo Nasdaq SPAC, May 27, 2026); StockTitan / NewHold Investment Corp III 8-K and Form 425 filings (May 27, 2026); NucNet (Newcleo $85M funding round, February 2026); Yahoo Finance (Newcleo NRC pre-application engagement, April 2026); Terrestrial Energy investor relations (NRC Safety Evaluation Report, May 12, 2026).`,
+    tags: ["news", "Newcleo", "SPAC", "IMSR", "advanced reactors"],
+  },
+  {
     id: "5",
     title: "Capital, Licenses, and Quiet Wins: Nuclear's Busy Month",
     author: "Editorial Team",
