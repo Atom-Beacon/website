@@ -14,6 +14,25 @@ interface BlogPost {
 
 const posts: BlogPost[] = [
   {
+    id: "8",
+    title: "A Global Buildout Takes Shape: Sweden, Canada, Korea, and the Race to Deploy",
+    author: "Editorial Team",
+    date: "September 5, 2026",
+    excerpt: "BWRX-300 consortia in Sweden and Indigenous equity at Darlington, Natrium partnerships in Korea, and AP1000 financing in Poland — nuclear companies are turning national ambitions into multi-country deployment pipelines.",
+    content: `If 2024 was the year nuclear returned to the policy agenda, 2026 is the year company partnerships started to look like real deployment maps. The common thread is not a single reactor type. It is developers and builders linking sites, capital, and construction partners across borders — and doing it in public.
+
+In Sweden, Studsvik, GE Vernova Hitachi Nuclear Energy, and Samsung C&T agreed in September to advance an initial four-unit BWRX-300 project totaling about 1.2 GW, with first operation targeted for the mid-2030s. Studsvik leads permitting and site work; GE Vernova Hitachi leads design and licensing support; Samsung C&T joins as execution partner. It is not yet a final investment decision, but it is a named consortium with clear roles — the structure projects need before steel is ordered.
+
+Canada is further along the same design family. The Williams Treaties First Nations' $700 million investment in Ontario Power Generation's Darlington New Nuclear Project is the largest collective First Nations stake in Canadian nuclear generation, backed by federal Indigenous loan guarantees and Ontario participation. Darlington remains the G7's leading grid-scale SMR effort. Indigenous equity at that scale strengthens both social license and the project's financial foundation — and it gives BWRX-300 a reference plant that European projects like Sweden's can learn from.
+
+TerraPower is extending Natrium the other direction. Agreements with Hyundai Engineering & Construction and SK Innovation open pathways to commercialize the sodium-cooled design in the United States, Korea, and selected international markets, with HDEC positioned as EPC contractor for up to eight units under completion and performance guarantees. That sits alongside Natrium construction already underway in Kemmerer, Wyoming, and Meta's multi-unit offtake interest. Meanwhile Westinghouse welcomed early U.S. Export-Import Bank financing for Poland's first AP1000 plant — a reminder that large light-water builds are advancing in parallel with the SMR wave.
+
+Zoom out and the picture is encouraging. Light-water SMRs have Canadian and Swedish paths. Advanced reactors have U.S. construction plus Korean industrialization. Generation III+ AP1000s have European financing milestones. Different technologies, same direction: companies are assembling the consortia, equity structures, and export-credit tools required to build fleets rather than one-offs. Nuclear progress is becoming legible again — not as a slogan, but as a set of projects with names, partners, and dates attached.
+
+Sources: GE Vernova / World Nuclear News (Studsvik–GE Vernova Hitachi–Samsung C&T Sweden SMR agreement, September 3, 2026); GlobeNewswire / BNN Bloomberg (Williams Treaties First Nations Darlington investment, June 23, 2026); ANS Nuclear Newswire (TerraPower–Hyundai E&C–SK Innovation agreements, August 17, 2026); Westinghouse Electric Company (Poland AP1000 EXIM financing milestone, February 17, 2026).`,
+    tags: ["news", "international", "BWRX-300", "Natrium", "deployment"],
+  },
+  {
     id: "7",
     title: "Fuel Is the Story: Enrichers, Fabricators, and Miners Step Into the Spotlight",
     author: "Editorial Team",
